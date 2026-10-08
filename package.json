@@ -5,8 +5,9 @@
   "description": "Sitio estático SERMEKARE — Tailwind CSS compilado (dist/output.css)",
   "scripts": {
     "icons": "node scripts/build-icons.js",
-    "dev": "npm run icons && tailwindcss -i ./input.css -o ./dist/output.css --watch",
-    "build": "npm run icons && tailwindcss -i ./input.css -o ./dist/output.css --minify"
+    "dev": "npm run icons && npm run jsonld && tailwindcss -i ./input.css -o ./dist/output.css --watch",
+    "build": "npm run icons && npm run jsonld && tailwindcss -i ./input.css -o ./dist/output.css --minify",
+    "jsonld": "node scripts/build-jsonld.js"
   },
   "devDependencies": {
     "@fontsource-variable/plus-jakarta-sans": "^5.3.0",

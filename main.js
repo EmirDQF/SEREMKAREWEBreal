@@ -117,8 +117,6 @@ const initForm = () => {
 const AUDIO_SEEK_STEP_SECONDS = 5;
 const AUDIO_PLAYBACK_RATES    = [1, 1.25, 1.5];
 const AUDIO_PRELOAD_MARGIN    = '300px';
-const WEEKDAYS_ES = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
-const WEEKDAYS_EN = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
@@ -136,7 +134,10 @@ const initAudioPlayer = () => {
   const ui       = player && $('[data-audio-ui]', player);
   const toggle   = player && $('[data-audio-toggle]', player);
   const progress = player && $('[data-audio-progress]', player);
-  if (!audio || !ui || !toggle || !progress) return;
+  // El reproductor solo aparece cuando existe el audio real (SITE.doctor.audio)
+  if (!audio || !ui || !toggle || !progress || !SITE.doctor.audio) return;
+  audio.src = SITE.doctor.audio;
+  player.hidden = false;
 
   const errorMsg      = $('[data-audio-error]', player);
   const currentLabel  = $('[data-audio-current]', player);
@@ -312,90 +313,72 @@ const initAudioPlayer = () => {
   observer.observe(player);
 };
 
-// ── Teleconsulta: Badge de disponibilidad ──────────────────────────────────────
-const readTeleconsultaConfig = () => {
-  const node = $('#teleconsulta-config');
-  if (!node) return null;
-  try {
-    return JSON.parse(node.textContent);
-  } catch {
-    return null; // JSON inválido → se mantiene el texto neutro del badge
-  }
+// ═══ DATOS CENTRALIZADOS (site-config.js → SITE) ══════════════════════════════
+
+/** Lee una ruta tipo "doctor.cmp" dentro de SITE */
+const readSite = path => path.split('.').reduce((obj, key) => (obj == null ? undefined : obj[key]), SITE);
+
+/** Textos [data-site="ruta"]: los pendientes ('[CMP]') quedan resaltados */
+const applySiteText = () => {
+  $$('[data-site]').forEach(el => {
+    const value = readSite(el.dataset.site);
+    if (typeof value !== 'string') return;
+    el.textContent = value;
+    el.classList.toggle('is-placeholder', isPending(value));
+  });
 };
 
-/** @param {string} hhmm "09:30" @returns {number|null} minutos desde 00:00 */
-const toMinutes = hhmm => {
-  const match = /^([01]\d|2[0-3]):([0-5]\d)$/.exec(String(hhmm));
-  return match ? Number(match[1]) * 60 + Number(match[2]) : null;
+/** Enlaces [data-wa="teleconsulta|general"] y [data-tel] */
+const applySiteLinks = () => {
+  $$('[data-wa]').forEach(link => {
+    link.href = waLink(link.dataset.waText || SITE.mensajes[link.dataset.wa] || SITE.mensajes.general);
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+  });
+
+  const tel = telLink();
+  // Sin teléfono real los enlaces "Llamar" mantienen su respaldo (#contacto)
+  if (tel) $$('[data-tel]').forEach(link => { link.href = tel; });
 };
 
-const parseRange = range => {
-  if (!Array.isArray(range) || range.length !== 2) return null;
-  const [start, end] = range.map(toMinutes);
-  return start !== null && end !== null && start < end ? { start, end } : null;
+/** Formación del doctor: la lista solo aparece cuando SITE.doctor.formacion tiene datos */
+const applyDoctorFormacion = () => {
+  const list = $('[data-doctor-formacion]');
+  if (!list || !SITE.doctor.formacion.length) return;
+  const items = SITE.doctor.formacion.map(text => {
+    const li = document.createElement('li');
+    const icon = document.createElement('i');
+    icon.className = 'ph-fill ph-graduation-cap';
+    icon.setAttribute('aria-hidden', 'true');
+    li.append(icon, document.createTextNode(` ${text}`));
+    return li;
+  });
+  list.replaceChildren(...items);
+  list.hidden = false;
 };
 
-/** Día de la semana (0-6) y minutos actuales en la zona horaria indicada */
-const getZonedNow = timeZone => {
-  const parts = new Intl.DateTimeFormat('en-US', {
-    timeZone, weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
-  }).formatToParts(new Date());
-  const read = type => parts.find(part => part.type === type)?.value;
-  return {
-    weekday: WEEKDAYS_EN.indexOf(read('weekday')),
-    minutes: Number(read('hour')) * 60 + Number(read('minute')),
-  };
+const applySiteData = () => {
+  applySiteText();
+  applySiteLinks();
+  applyDoctorFormacion();
 };
 
-const describeAvailability = (schedule, now) => {
-  const today = parseRange(schedule[now.weekday]);
-  if (today && now.minutes < today.end) return { state: 'today', text: 'Disponible hoy' };
-
-  for (let offset = 1; offset <= WEEKDAYS_ES.length; offset++) {
-    const day = (now.weekday + offset) % WEEKDAYS_ES.length;
-    if (parseRange(schedule[day])) return { state: 'later', text: `Próxima atención: ${WEEKDAYS_ES[day]}` };
-  }
-  return null;
-};
-
-const initAvailabilityBadge = () => {
-  const badge = $('[data-availability]');
-  const label = badge && $('[data-availability-text]', badge);
-  if (!label) return;
-
-  const config = readTeleconsultaConfig();
-  const schedule = config?.horario;
-  // Sin horario definido no se afirma disponibilidad: queda el texto neutro del HTML
-  if (!schedule || typeof schedule !== 'object') return;
-
-  try {
-    const now = getZonedNow(config.timezone || 'America/Lima');
-    if (now.weekday < 0 || !Number.isFinite(now.minutes)) return;
-    const availability = describeAvailability(schedule, now);
-    if (!availability) return;
-    badge.dataset.state = availability.state;
-    label.textContent = availability.text;
-  } catch {
-    // Zona horaria inválida (RangeError) → se mantiene el texto neutro
-  }
-};
-
-// ── Teleconsulta: Foto del doctor (fallback a placeholder "DC") ────────────────
+// ── Foto del doctor: si no carga, queda visible el monograma "DC" ─────────────
 const initDoctorPhoto = () => {
-  const img = $('[data-tele-photo]');
-  if (!img) return;
-  const markMissing = () => img.classList.add('is-missing');
-  if (img.complete && img.naturalWidth === 0) markMissing();
-  img.addEventListener('error', markMissing, { once: true });
+  $$('[data-doctor-photo]').forEach(img => {
+    const markMissing = () => img.classList.add('is-missing');
+    if (img.complete && img.naturalWidth === 0) markMissing();
+    img.addEventListener('error', markMissing, { once: true });
+  });
 };
 
 // ── Bootstrap ──────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  applySiteData();
   initMobileMenu();
   initScrollReveal();
   initNavbar();
   initForm();
   initDoctorPhoto();
-  initAvailabilityBadge();
   initAudioPlayer();
 });

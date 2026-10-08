@@ -1,0 +1,194 @@
+/* ═══════════════════════════════════════════════════════════════
+   TELECONSULTA ESTRELLA — #teleconsulta, estado en vivo, píldora y barra móvil
+   Fondo navy profundo con filete dorado y un glow sutil. Tokens en style.css (:root).
+════════════════════════════════════════════════════════════════ */
+
+.tele-star {
+  background:
+    radial-gradient(120% 80% at 100% 0%, rgb(var(--c-petrol) / .35) 0%, transparent 55%),
+    linear-gradient(180deg, rgb(var(--c-navy)) 0%, #0B1324 100%);
+  border-top: 1px solid rgb(var(--c-gold-light) / .55);
+  border-bottom: 1px solid rgb(var(--c-gold-light) / .25);
+  color: #E2E8F0;
+}
+
+.tele-star-glow {
+  position: absolute;
+  top: 20%;
+  left: -10rem;
+  width: 32rem;
+  height: 32rem;
+  border-radius: 9999px;
+  background: rgb(var(--c-cyan) / .14);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.tele-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem 1rem;
+  border-radius: 9999px;
+  background: rgb(var(--c-gold-light) / .12);
+  border: 1px solid rgb(var(--c-gold-light) / .55);
+  color: #FCD34D;
+  font-size: .875rem;
+  font-weight: 700;
+}
+
+/* ── Horario estrella ── */
+.tele-hours {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-card);
+  background: rgb(255 255 255 / .05);
+  border: 1px solid rgb(var(--c-gold-light) / .35);
+}
+
+.tele-hours > i { color: rgb(var(--c-gold-light)); font-size: 2.25rem; }
+.tele-hours-label { color: #CBD5E1; font-size: .8125rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.tele-hours-value {
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.01em;
+}
+
+/* ── Estado en vivo ── */
+.tele-status {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  max-width: 36rem;
+}
+
+.tele-status .tele-dot { margin-top: .45rem; }
+.tele-status-text { color: #F1F5F9; font-weight: 600; transition: color 250ms var(--ease-lux); }
+.tele-status-next { color: #94A3B8; font-size: .9375rem; margin-top: .125rem; }
+.tele-status[data-state="open"] .tele-status-text { color: #5EEAD4; }
+
+/* Punto de estado: ámbar quieto fuera de horario; verde con pulso lento dentro */
+.tele-dot { background: rgb(var(--c-gold-light)); transition: background-color 400ms var(--ease-lux); }
+.tele-dot::after { animation: none; opacity: 0; }
+
+[data-state="open"] > .tele-dot,
+[data-state="open"] .tele-dot { background: #2DD4BF; }
+
+[data-state="open"] > .tele-dot::after,
+[data-state="open"] .tele-dot::after { opacity: 1; animation: telePing 2.4s var(--ease-lux) infinite; }
+
+/* ── Llamar ahora ── */
+.tele-call {
+  display: inline-flex;
+  align-items: center;
+  gap: .625rem;
+  min-height: 2.75rem;
+  color: #fff;
+  border-bottom: 1px solid rgb(255 255 255 / .25);
+  transition: border-color var(--dur-ui) var(--ease-lux), color var(--dur-ui) var(--ease-lux);
+}
+.tele-call:hover { color: #FCD34D; border-color: #FCD34D; }
+.tele-call > i { color: rgb(var(--c-gold-light)); }
+.tele-call-micro { color: #94A3B8; font-size: .875rem; }
+
+.tele-chip--dark { background: rgb(255 255 255 / .06); border-color: rgb(255 255 255 / .15); color: #E2E8F0; box-shadow: none; }
+
+/* ── Foto con pie ── */
+.tele-photo-caption {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: .875rem 1.125rem;
+  border-radius: var(--radius-ctl);
+  background: rgb(var(--c-navy) / .72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgb(255 255 255 / .12);
+}
+
+/* ── Cómo funciona (4 pasos) ── */
+.tele-flow {
+  display: grid;
+  gap: 1rem;
+}
+@media (min-width: 640px) { .tele-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .tele-flow { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; } }
+
+.tele-flow-step {
+  position: relative;
+  padding: 1.5rem;
+  border-radius: var(--radius-card);
+  background: rgb(255 255 255 / .04);
+  border: 1px solid rgb(255 255 255 / .1);
+  transition: transform 250ms var(--ease-lux), border-color 250ms var(--ease-lux), background-color 250ms var(--ease-lux);
+}
+.tele-flow-step:hover { transform: translateY(-3px); border-color: rgb(var(--c-gold-light) / .45); background: rgb(255 255 255 / .07); }
+
+.tele-flow-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  border-radius: 9999px;
+  background: rgb(var(--c-gold-light));
+  color: rgb(var(--c-navy));
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+}
+.tele-flow-title { color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1.125rem; }
+.tele-flow-text { color: #CBD5E1; font-size: .9375rem; margin-top: .375rem; }
+
+/* ── Barra móvil inferior: Llamar · WhatsApp · Agendar ── */
+.mobile-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 55;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .5rem;
+  padding: .5rem .75rem calc(.5rem + env(safe-area-inset-bottom));
+  background: rgb(255 255 255 / .94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgb(226 232 240);
+  box-shadow: 0 -8px 24px -12px rgb(var(--c-navy) / .25);
+}
+
+.mobile-bar a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .125rem;
+  min-height: 3.25rem;
+  border-radius: var(--radius-ctl);
+  font-size: .8125rem;
+  font-weight: 700;
+}
+.mobile-bar a i { font-size: 1.4rem; }
+.mobile-bar .mb-call { color: rgb(var(--c-navy)); background: rgb(var(--c-surface)); border: 1px solid rgb(226 232 240); }
+.mobile-bar .mb-wa { background: rgb(var(--c-whatsapp)); color: rgb(var(--c-navy)); }
+.mobile-bar .mb-book { background: rgb(var(--c-navy)); color: #fff; }
+
+@media (min-width: 1024px) { .mobile-bar { display: none; } }
+@media (max-width: 1023px) {
+  body { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom)); }
+  .wa-float { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-state="open"] .tele-dot::after { animation: none; opacity: 0; }
+  .tele-flow-step, .tele-flow-step:hover { transition: none; transform: none; }
+}

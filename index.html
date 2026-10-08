@@ -76,7 +76,9 @@
     <!-- ═══════════════════════════════════════════════
          SCHEMA.ORG — DATOS ESTRUCTURADOS (SEO TÉCNICO)
     ════════════════════════════════════════════════════ -->
-    <!-- TODO: reemplazar [PLACEHOLDERS]. El FAQPage debe tener el MISMO texto que el FAQ visible (#faq-teleconsulta). -->
+    <!-- Generado por scripts/build-jsonld.js desde site-config.js y el FAQ visible (#faq-teleconsulta).
+         No editar a mano: se regenera con `npm run build`. -->
+    <!-- JSONLD:START -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -85,70 +87,115 @@
           "@type": "MedicalClinic",
           "@id": "https://www.sermekare.pe/#clinica",
           "name": "SERMEKARE | Servicios Médicos Kare SAC",
-          "description": "Clínica especializada en reumatología, dolor de rodilla, densitometría ósea y diagnóstico articular en Lima, Perú.",
-          "image": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200&auto=format&fit=crop&fm=webp",
+          "description": "Consulta reumatológica presencial en Lima y teleconsulta en todo el Perú con el Dr. Daniel Collcca. Densitometría ósea, ecografía articular e infiltraciones ecoguiadas.",
           "url": "https://www.sermekare.pe/",
-          "telephone": "+51987654321",
+          "image": "https://www.sermekare.pe/assets/img/og-sermekare.jpg",
           "email": "citas@sermekare.pe",
-          "priceRange": "$$",
-          "openingHours": ["Mo-Fr 08:00-20:00", "Sa 08:00-13:00"],
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Av. Principal 123, Distrito Médico",
             "addressLocality": "Lima",
             "addressRegion": "Lima",
             "addressCountry": "PE"
           },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "-12.0464",
-            "longitude": "-77.0428"
-          },
-          "medicalSpecialty": "Rheumatologic",
-          "areaServed": { "@type": "Country", "name": "Perú" },
-          "availableService": [
-            { "@type": "MedicalTest", "name": "Densitometría ósea" },
-            { "@type": "MedicalTest", "name": "Ecografía articular" },
-            { "@type": "MedicalProcedure", "name": "Infiltraciones guiadas por ecografía" }
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+              ],
+              "opens": "19:00",
+              "closes": "21:00"
+            }
           ],
-          "employee": { "@id": "https://www.sermekare.pe/#dr-collcca" },
-          "hasMap": "https://maps.google.com/?q=Lima,Peru",
-          "sameAs": [
-            "https://www.facebook.com/sermekare",
-            "https://www.instagram.com/sermekare"
-          ]
+          "medicalSpecialty": "Rheumatologic",
+          "areaServed": {
+            "@type": "Country",
+            "name": "Perú"
+          },
+          "availableService": [
+            {
+              "@type": "MedicalTest",
+              "name": "Densitometría ósea"
+            },
+            {
+              "@type": "MedicalTest",
+              "name": "Ecografía articular"
+            },
+            {
+              "@type": "MedicalProcedure",
+              "name": "Infiltraciones guiadas por ecografía"
+            }
+          ],
+          "employee": {
+            "@id": "https://www.sermekare.pe/#dr-collcca"
+          }
         },
         {
-          "@type": ["Person", "Physician"],
+          "@type": [
+            "Person",
+            "Physician"
+          ],
           "@id": "https://www.sermekare.pe/#dr-collcca",
           "name": "Dr. Daniel Collcca",
           "jobTitle": "Médico Reumatólogo",
-          "image": "https://www.sermekare.pe/assets/img/dr-collcca.webp",
-          "url": "https://www.sermekare.pe/#teleconsulta",
           "medicalSpecialty": "Rheumatologic",
-          "identifier": [
-            { "@type": "PropertyValue", "propertyID": "CMP", "value": "[CMP]" },
-            { "@type": "PropertyValue", "propertyID": "RNE", "value": "[RNE]" }
-          ],
-          "worksFor": { "@id": "https://www.sermekare.pe/#clinica" },
-          "subjectOf": { "@id": "https://www.sermekare.pe/#audio-dr-collcca" }
+          "image": "https://www.sermekare.pe/assets/img/dr-collcca.webp",
+          "url": "https://www.sermekare.pe/#medicos",
+          "identifier": [],
+          "worksFor": {
+            "@id": "https://www.sermekare.pe/#clinica"
+          }
         },
         {
           "@type": "Service",
           "@id": "https://www.sermekare.pe/#teleconsulta-servicio",
           "name": "Teleconsulta reumatológica",
           "serviceType": "Teleconsulta reumatológica",
-          "description": "Consulta reumatológica virtual por videollamada para pacientes de todo el Perú: revisión de exámenes previos, plan de tratamiento, receta digital, órdenes de exámenes y seguimiento.",
+          "description": "Consulta reumatológica por videollamada con el Dr. Daniel Collcca, Lunes a sábado, 7:00 pm – 9:00 pm (hora de Lima), para pacientes de todo el Perú.",
           "url": "https://www.sermekare.pe/#teleconsulta",
           "provider": [
-            { "@id": "https://www.sermekare.pe/#dr-collcca" },
-            { "@id": "https://www.sermekare.pe/#clinica" }
+            {
+              "@id": "https://www.sermekare.pe/#dr-collcca"
+            },
+            {
+              "@id": "https://www.sermekare.pe/#clinica"
+            }
           ],
-          "areaServed": { "@type": "Country", "name": "Perú" },
+          "areaServed": {
+            "@type": "Country",
+            "name": "Perú"
+          },
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "opens": "19:00",
+            "closes": "21:00"
+          },
           "availableChannel": [
-            { "@type": "ServiceChannel", "name": "WhatsApp Videollamada", "serviceUrl": "https://wa.me/[NUMERO_WHATSAPP]" },
-            { "@type": "ServiceChannel", "name": "Zoom" },
-            { "@type": "ServiceChannel", "name": "Google Meet" }
+            {
+              "@type": "ServiceChannel",
+              "name": "WhatsApp Videollamada"
+            },
+            {
+              "@type": "ServiceChannel",
+              "name": "Zoom"
+            },
+            {
+              "@type": "ServiceChannel",
+              "name": "Google Meet"
+            }
           ]
         },
         {
@@ -158,41 +205,68 @@
             {
               "@type": "Question",
               "name": "¿Qué necesito para la consulta virtual?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Un celular, tablet o computadora con cámara, micrófono e internet estable, y WhatsApp, Zoom o Google Meet (el que prefieras). Ten a la mano tus exámenes previos y la lista de medicamentos que tomas." }
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Un celular, tablet o computadora con cámara, micrófono e internet estable, y WhatsApp, Zoom o Google Meet (el que prefieras). Ten a la mano tus exámenes previos y la lista de medicamentos que tomas."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿En qué horario atiende el Dr. Collcca por teleconsulta?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "De lunes a sábado, de 7:00 pm a 9:00 pm (hora de Lima). Fuera de ese horario puedes dejarnos tu mensaje por WhatsApp o elegir tu cita en la agenda, y te confirmamos."
+              }
             },
             {
               "@type": "Question",
               "name": "¿Cómo y cuándo pago?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Al agendar por WhatsApp te confirmamos el monto, el momento del pago y los datos para pagar. Métodos de pago: [METODOS_PAGO]." }
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Al agendar te confirmamos por WhatsApp el monto, el momento del pago y los medios de pago disponibles."
+              }
             },
             {
               "@type": "Question",
               "name": "¿Recibo receta y órdenes de exámenes?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Sí. Al terminar la videollamada recibes en formato digital tu plan de tratamiento y, si el doctor lo indica, la receta y las órdenes de exámenes, además de las indicaciones para tu seguimiento." }
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí. Al terminar la videollamada recibes en formato digital tu plan de tratamiento y, si el doctor lo indica, la receta y las órdenes de exámenes, además de las indicaciones para tu seguimiento."
+              }
             },
             {
               "@type": "Question",
               "name": "¿Puedo enviar mis exámenes antes?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Sí, y te lo recomendamos. Envíalos por WhatsApp (foto o PDF) al agendar: análisis de laboratorio, densitometrías, ecografías, radiografías o informes previos. Así el doctor puede revisarlos antes de la videollamada." }
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, y te lo recomendamos. Envíalos por WhatsApp (foto o PDF) al agendar: análisis de laboratorio, densitometrías, ecografías, radiografías o informes previos. Así el doctor puede revisarlos antes de la videollamada."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué llevo a mi primera consulta presencial?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Tu documento de identidad, tus exámenes previos (análisis, radiografías, ecografías o densitometrías) y la lista de los medicamentos que tomas, con sus dosis."
+              }
             },
             {
               "@type": "Question",
               "name": "¿Y si necesito un examen presencial (densitometría o ecografía)?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Si el doctor lo considera necesario, puedes realizarte la densitometría ósea o la ecografía articular en nuestra sede de Lima. Conoce nuestros servicios de diagnóstico." }
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Si el doctor lo considera necesario, puedes realizarte la densitometría ósea o la ecografía articular en nuestra sede de Lima."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Atienden urgencias?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. La teleconsulta no atiende urgencias. Si tienes una urgencia, acude de inmediato al servicio de emergencias más cercano."
+              }
             }
           ]
-        },
-        {
-          "@type": "AudioObject",
-          "@id": "https://www.sermekare.pe/#audio-dr-collcca",
-          "name": "Cómo es una consulta virtual con el Dr. Collcca",
-          "description": "Mensaje de voz del Dr. Collcca que explica cómo funciona la teleconsulta reumatológica por videollamada.",
-          "contentUrl": "https://www.sermekare.pe/assets/audio/dr-collcca-presentacion.mp3",
-          "encodingFormat": "audio/mpeg",
-          "inLanguage": "es-PE",
-          "duration": "[DURACION_AUDIO_ISO8601]",
-          "transcript": "[TRANSCRIPCION_AUDIO]",
-          "author": { "@id": "https://www.sermekare.pe/#dr-collcca" }
         },
         {
           "@type": "WebSite",
@@ -200,11 +274,14 @@
           "url": "https://www.sermekare.pe/",
           "name": "SERMEKARE",
           "inLanguage": "es-PE",
-          "publisher": { "@id": "https://www.sermekare.pe/#clinica" }
+          "publisher": {
+            "@id": "https://www.sermekare.pe/#clinica"
+          }
         }
       ]
     }
     </script>
+    <!-- JSONLD:END -->
 </head>
 
 <body class="font-sans text-slate-700 bg-surface selection:bg-petrol selection:text-white">
@@ -237,7 +314,7 @@
                     <a href="#contacto" class="nav-link">Contacto</a>
                     <a href="#teleconsulta" class="tele-pill" data-tele-pill>
                         <span class="tele-dot" aria-hidden="true"></span>
-                        <span>Teleconsulta · <span data-site="horario.corto">Lun–Sáb 7–9 pm</span></span>
+                        <span data-tele-pill-text>Teleconsulta · Lun–Sáb 7–9 pm</span>
                     </a>
                     <a href="#agendar" class="btn btn--primary !min-h-[2.75rem] !py-2.5 !px-5 !text-base" data-book>
                         <i class="ph-fill ph-calendar-check text-lg" aria-hidden="true"></i> Agendar cita
@@ -359,129 +436,366 @@
         </section>
 
         <!-- ─────────────────────────────────────────────────────
-             NOSOTROS — #nosotros
+             TELECONSULTA — #teleconsulta  (sección estrella)
+             Fondo navy + filete dorado. Horario y estado en vivo: tele.js (lee SITE.horario).
+             Enlaces de WhatsApp y teléfono: main.js → applySiteData (lee SITE.whatsapp / SITE.telefono).
         ─────────────────────────────────────────────────────── -->
-        <section id="nosotros" class="py-20 md:py-32 bg-white relative overflow-hidden" aria-labelledby="nosotros-title">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <section id="teleconsulta" class="tele-star relative py-20 md:py-28 overflow-hidden" aria-labelledby="teleconsulta-title">
+            <div class="tele-star-glow" aria-hidden="true"></div>
 
-                    <!-- Imagen equipo -->
-                    <div class="relative reveal-zoom order-2 lg:order-1">
-                        <picture>
-                            <source srcset="https://images.unsplash.com/photo-1538108149393-cebb518e5fb0?q=80&w=800&auto=format&fit=crop&fm=webp" type="image/webp">
-                            <img src="https://images.unsplash.com/photo-1538108149393-cebb518e5fb0?q=80&w=800&auto=format&fit=crop"
-                                 alt="Consultorio de SERMEKARE en Lima, Perú"
-                                 loading="lazy"
-                                 class="rounded-[2.5rem] shadow-2xl w-full object-cover aspect-[4/5] border border-gray-100 img-zoom"
-                                 width="800"
-                                 height="1000">
-                        </picture>
-                        <!-- Card flotante -->
-                        <aside class="absolute -bottom-6 -right-6 bg-white/95 backdrop-blur-sm p-6 rounded-3xl shadow-premium border border-gray-100 hidden md:block max-w-[280px] hover:-translate-y-2 transition-transform duration-400"
-                               aria-label="Enfoque humano SERMEKARE">
-                            <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-brand-blue mb-4 shadow-sm" aria-hidden="true">
-                                <i class="ph-fill ph-hand-heart text-3xl"></i>
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-12 lg:gap-16 items-center">
+
+                    <div class="reveal-left">
+                        <span class="tele-badge"><i class="ph-fill ph-seal-check" aria-hidden="true"></i> Atención directa con el Dr. Daniel Collcca</span>
+
+                        <h2 id="teleconsulta-title" class="font-heading text-4xl md:text-5xl font-bold text-white leading-tight mt-6">
+                            Teleconsulta reumatológica desde tu casa
+                        </h2>
+                        <p class="text-slate-300 text-lg md:text-xl leading-relaxed mt-5 max-w-[60ch]">Atención virtual segura desde la comodidad de tu hogar. Ideal si te cuesta movilizarte o vives fuera de Lima.</p>
+
+                        <div class="tele-hours mt-8">
+                            <i class="ph-fill ph-clock" aria-hidden="true"></i>
+                            <div>
+                                <p class="tele-hours-label">Horario de teleconsulta y llamadas</p>
+                                <p class="tele-hours-value"><span class="whitespace-nowrap">Lun – Sáb</span> · <span class="whitespace-nowrap">7:00 – 9:00 PM</span></p>
                             </div>
-                            <p class="font-bold text-gray-900 mb-2 text-lg">Enfoque Humano</p>
-                            <p class="text-sm text-gray-600 leading-relaxed">No tratamos enfermedades, tratamos personas. Escuchamos activamente para entender tu <strong>dolor real</strong>.</p>
-                        </aside>
+                        </div>
+
+                        <div class="tele-status mt-4" data-tele-status data-state="closed" aria-live="polite">
+                            <span class="tele-dot" aria-hidden="true"></span>
+                            <div>
+                                <p class="tele-status-text" data-tele-status-text>Horario de atención: 7:00 pm – 9:00 pm (Déjanos tu mensaje para agendar)</p>
+                                <p class="tele-status-next" data-tele-status-next hidden></p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row flex-wrap gap-3 mt-8">
+                            <a href="https://wa.me/?text=Hola%20Dr.%20Daniel%20Collcca%2C%20deseo%20agendar%20una%20teleconsulta%20(Horario%3A%207pm%20a%209pm)." class="btn btn--wa btn--lg" data-wa="teleconsulta" target="_blank" rel="noopener noreferrer">
+                                <i class="ph-fill ph-whatsapp-logo text-2xl" aria-hidden="true"></i> WhatsApp Teleconsulta
+                            </a>
+                            <a href="#agendar" class="btn btn--gold btn--lg" data-book="teleconsulta">
+                                <i class="ph-fill ph-calendar-check text-xl" aria-hidden="true"></i> Elegir fecha y hora
+                            </a>
+                        </div>
+                        <div class="mt-4">
+                            <a href="#contacto" class="tele-call" data-tel>
+                                <i class="ph-fill ph-phone-call text-xl" aria-hidden="true"></i>
+                                <span><strong>Llamar ahora</strong> <span class="tele-call-micro">· te atendemos en el horario de teleconsulta</span></span>
+                            </a>
+                        </div>
+
+                        <ul class="flex flex-wrap gap-2 mt-8" role="list" aria-label="Plataformas para la videollamada">
+                            <li class="tele-chip tele-chip--dark"><i class="ph-fill ph-whatsapp-logo text-lg" aria-hidden="true"></i> WhatsApp</li>
+                            <li class="tele-chip tele-chip--dark"><i class="ph-fill ph-video-camera text-lg" aria-hidden="true"></i> Zoom</li>
+                            <li class="tele-chip tele-chip--dark"><i class="ph-bold ph-google-logo text-lg" aria-hidden="true"></i> Google Meet</li>
+                        </ul>
                     </div>
 
-                    <!-- Contenido textual -->
-                    <div class="reveal-right order-1 lg:order-2">
-                        <span class="inline-block bg-blue-50 text-brand-blue font-bold px-4 py-1.5 rounded-full text-xs tracking-wider uppercase mb-6">Conoce SERMEKARE</span>
-
-                        <h2 id="nosotros-title" class="font-heading text-3xl md:text-5xl font-bold text-brand-dark mb-6 leading-tight">
-                            Más que una clínica, tu aliado para vivir sin dolor
-                        </h2>
-
-                        <div class="mb-8 text-gray-600 text-lg leading-relaxed space-y-4">
-                            <p>SERMEKARE nace de la necesidad de ofrecer un <strong>diagnóstico reumatológico certero en Perú</strong>. Sabemos que el <em>dolor articular crónico</em> desgasta física y emocionalmente.</p>
-                            <p>Por eso, reunimos la atención de un reumatólogo dedicado, tecnología de imagen (ecógrafos y densitómetros para <strong>densitometría ósea</strong>) y un trato empático para devolverte la independencia que mereces.</p>
-                        </div>
-
-                        <!-- Misión y visión -->
-                        <div class="grid sm:grid-cols-2 gap-6 mb-8">
-                            <div class="bg-brand-light p-6 rounded-2xl border border-gray-100 hover:border-brand-accent/50 transition-colors">
-                                <div class="flex items-center gap-3 mb-3">
-                                    <i class="ph-fill ph-target text-brand-accent text-2xl" aria-hidden="true"></i>
-                                    <h3 class="font-heading font-bold text-brand-dark text-lg">Nuestra Misión</h3>
-                                </div>
-                                <p class="text-sm text-gray-600 leading-relaxed">Diagnosticar y tratar enfermedades reumatológicas con precisión científica y calor humano, mejorando tu calidad de vida.</p>
+                    <div class="reveal-right w-full max-w-md mx-auto lg:max-w-none">
+                        <figure class="tele-photo relative">
+                            <div class="relative aspect-[4/5] rounded-card overflow-hidden border border-white/15 shadow-2xl">
+                                <div class="tele-photo-placeholder absolute inset-0 flex items-center justify-center" aria-hidden="true"><span>DC</span></div>
+                                <img src="assets/img/dr-collcca.webp"
+                                     alt="Dr. Daniel Collcca en una teleconsulta reumatológica por videollamada"
+                                     width="800" height="1000" loading="lazy" decoding="async"
+                                     class="relative w-full h-full object-cover"
+                                     data-doctor-photo>
                             </div>
-                            <div class="bg-brand-light p-6 rounded-2xl border border-gray-100 hover:border-brand-accent/50 transition-colors">
-                                <div class="flex items-center gap-3 mb-3">
-                                    <i class="ph-fill ph-eye text-brand-accent text-2xl" aria-hidden="true"></i>
-                                    <h3 class="font-heading font-bold text-brand-dark text-lg">Nuestra Visión</h3>
-                                </div>
-                                <p class="text-sm text-gray-600 leading-relaxed">Ser el centro médico de referencia nacional en innovación terapéutica y erradicación del <em>dolor articular</em>.</p>
-                            </div>
-                        </div>
+                            <figcaption class="tele-photo-caption">
+                                <span class="font-heading font-bold text-white text-lg">Dr. Daniel Collcca</span>
+                                <span class="text-slate-300 text-sm">Médico Reumatólogo</span>
+                            </figcaption>
+                        </figure>
 
-                        <!-- Diferenciadores -->
-                        <h3 class="font-bold text-gray-900 mb-4 text-lg">¿Por qué elegirnos?</h3>
-                        <ul class="space-y-3" role="list">
-                            <li class="flex items-center gap-3 bg-white border border-gray-100 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                                <i class="ph-fill ph-check-circle text-brand-accent text-xl" aria-hidden="true"></i>
-                                <span class="font-medium text-gray-700">Equipos de diagnóstico en la misma clínica (sin traslados).</span>
-                            </li>
-                            <li class="flex items-center gap-3 bg-white border border-gray-100 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                                <i class="ph-fill ph-check-circle text-brand-accent text-xl" aria-hidden="true"></i>
-                                <span class="font-medium text-gray-700">Un reumatólogo colegiado que conoce tu caso de principio a fin.</span>
-                            </li>
-                            <li class="flex items-center gap-3 bg-white border border-gray-100 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                                <i class="ph-fill ph-check-circle text-brand-accent text-xl" aria-hidden="true"></i>
-                                <span class="font-medium text-gray-700">Tratamientos basados en guías médicas internacionales.</span>
-                            </li>
+                        <!-- Mensaje de voz del doctor. Oculto hasta que exista el audio real (SITE.doctor.audio). -->
+                        <div class="tele-player mt-6 glass-card p-5 sm:p-6" data-audio-player data-state="idle" hidden>
+                            <p id="tele-audio-title" class="font-heading font-bold text-navy text-lg leading-snug flex items-start gap-3">
+                                <i class="ph-fill ph-microphone text-2xl text-petrol shrink-0" aria-hidden="true"></i>
+                                <span>Escucha cómo es una consulta virtual con el Dr. Collcca <span class="text-slate-500 font-medium text-sm whitespace-nowrap" data-audio-duration-label></span></span>
+                            </p>
+
+                            <audio preload="none"
+                                   controls
+                                   class="w-full mt-5"
+                                   aria-labelledby="tele-audio-title"
+                                   data-audio>
+                                Tu navegador no puede reproducir este audio. Lee la transcripción abajo.
+                            </audio>
+
+                            <div class="tele-player-ui mt-5" data-audio-ui hidden>
+                                <div class="tele-player-main">
+                                    <button type="button" class="tele-play" aria-label="Reproducir mensaje del Dr. Collcca" data-audio-toggle>
+                                        <i class="ph-fill ph-play text-2xl" aria-hidden="true" data-icon-play></i>
+                                        <i class="ph-fill ph-pause text-2xl" aria-hidden="true" data-icon-pause></i>
+                                        <span class="tele-spinner" aria-hidden="true"></span>
+                                    </button>
+
+                                    <div class="tele-player-track">
+                                        <div class="tele-wave" aria-hidden="true">
+                                            <span></span><span></span><span></span><span></span><span></span><span></span>
+                                            <span></span><span></span><span></span><span></span><span></span><span></span>
+                                            <span></span><span></span><span></span><span></span><span></span><span></span>
+                                            <span></span><span></span><span></span><span></span><span></span><span></span>
+                                        </div>
+                                        <div class="tele-progress"
+                                             role="slider"
+                                             tabindex="0"
+                                             aria-label="Posición del audio"
+                                             aria-valuemin="0"
+                                             aria-valuemax="0"
+                                             aria-valuenow="0"
+                                             aria-valuetext="0:00 de 0:00"
+                                             data-audio-progress>
+                                            <div class="tele-progress-track"><div class="tele-progress-fill"></div></div>
+                                            <div class="tele-progress-thumb"></div>
+                                        </div>
+                                        <div class="tele-times" aria-hidden="true">
+                                            <span data-audio-current>0:00</span>
+                                            <span data-audio-total>--:--</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tele-player-controls">
+                                    <button type="button" class="tele-ctrl" aria-label="Velocidad de reproducción: 1x" data-audio-speed>1x</button>
+                                    <button type="button" class="tele-ctrl" aria-label="Silenciar audio" aria-pressed="false" data-audio-mute>
+                                        <i class="ph-bold ph-speaker-high text-xl" aria-hidden="true" data-icon-unmuted></i>
+                                        <i class="ph-bold ph-speaker-slash text-xl" aria-hidden="true" data-icon-muted></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <p class="tele-player-error mt-5" role="alert" data-audio-error hidden>
+                                <i class="ph-fill ph-warning-circle text-xl shrink-0" aria-hidden="true"></i>
+                                No pudimos cargar el audio. Lee la transcripción abajo.
+                            </p>
+
+                            <details class="tele-details mt-5 border-t border-slate-200 pt-4">
+                                <summary class="font-bold text-petrol">
+                                    Leer transcripción
+                                    <i class="ph-bold ph-caret-down tele-caret" aria-hidden="true"></i>
+                                </summary>
+                                <div class="text-slate-600 leading-relaxed pt-3">
+                                    <!-- PENDIENTE: pegar aquí la transcripción completa del audio -->
+                                    <p>[TRANSCRIPCION_AUDIO]</p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cómo funciona -->
+                <div class="mt-20 md:mt-24 reveal">
+                    <h3 class="font-heading font-bold text-2xl md:text-3xl text-white text-center mb-10">Cómo funciona</h3>
+                    <ol class="tele-flow" role="list">
+                        <li class="tele-flow-step">
+                            <span class="tele-flow-num" aria-hidden="true">1</span>
+                            <p class="tele-flow-title">Agenda</p>
+                            <p class="tele-flow-text">Elige día y hora en la agenda o escríbenos por WhatsApp.</p>
+                        </li>
+                        <li class="tele-flow-step">
+                            <span class="tele-flow-num" aria-hidden="true">2</span>
+                            <p class="tele-flow-title">Confirmas hora y pago</p>
+                            <p class="tele-flow-text">Te confirmamos la cita, el monto y cómo pagar. Envía tus exámenes previos.</p>
+                        </li>
+                        <li class="tele-flow-step">
+                            <span class="tele-flow-num" aria-hidden="true">3</span>
+                            <p class="tele-flow-title">Videollamada con el Dr. Collcca</p>
+                            <p class="tele-flow-text">Por WhatsApp, Zoom o Google Meet, desde tu celular o computadora.</p>
+                        </li>
+                        <li class="tele-flow-step">
+                            <span class="tele-flow-num" aria-hidden="true">4</span>
+                            <p class="tele-flow-title">Recibes tu plan digital</p>
+                            <p class="tele-flow-text">Plan de tratamiento y, si el doctor lo indica, receta y órdenes de exámenes.</p>
+                        </li>
+                    </ol>
+                    <p class="text-center text-slate-400 text-sm mt-8"><i class="ph-fill ph-shield-check text-gold-light" aria-hidden="true"></i> Atención conforme a la Ley Marco de Telesalud (Ley N.º 30421)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────────────────────────
+             PREGUNTAS FRECUENTES — #faq-teleconsulta
+             El texto debe ser IDÉNTICO al FAQPage del JSON-LD del <head> (mantener sincronizado).
+        ─────────────────────────────────────────────────────── -->
+        <section id="faq" class="py-20 md:py-28 bg-surface" aria-labelledby="faq-title">
+            <div id="faq-teleconsulta" class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+                <div class="text-center mb-10">
+                    <span class="eyebrow mb-5"><i class="ph-fill ph-question" aria-hidden="true"></i> Preguntas frecuentes</span>
+                    <h2 id="faq-title" class="font-heading font-bold text-3xl md:text-4xl text-navy">Teleconsulta y primera consulta</h2>
+                </div>
+                <div class="space-y-4">
+                    <details class="tele-details tele-faq">
+                        <summary>¿Qué necesito para la consulta virtual? <i class="ph-bold ph-caret-down tele-caret" aria-hidden="true"></i></summary>
+                        <p>Un celular, tablet o computadora con cámara, micrófono e internet estable, y WhatsApp, Zoom o Google Meet (el que prefieras). Ten a la mano tus exámenes previos y la lista de medicamentos que tomas.</p>
+                    </details>
+                    <details class="tele-details tele-faq">
+                        <summary>¿En qué horario atiende el Dr. Collcca por teleconsulta? <i class="ph-bold ph-caret-down tele-caret" aria-hidden="true"></i></summary>
+                        <p>De lunes a sábado, de 7:00 pm a 9:00 pm (hora de Lima). Fuera de ese horario puedes dejarnos tu mensaje por WhatsApp o elegir tu cita en la agenda, y te confirmamos.</p>
+                    </details>
+                    <details class="tele-details tele-faq">
+                        <summary>¿Cómo y cuándo pago? <i class="ph-bold ph-caret-down tele-caret" aria-hidden="true"></i></summary>
+                        <p>Al agendar te confirmamos por WhatsApp el monto, el momento del pago y los medios de pago disponibles.</p>
+                    </details>
+                    <details class="tele-details tele-faq">
+                        <summary>¿Recibo receta y órdenes de exámenes? <i class="ph-bold ph-caret-down tele-caret" aria-hidden="true"></i></summary>
+                        <p>Sí. Al terminar la videollamada recibes en formato digital tu plan de tratamiento y, si el doctor lo indica, la receta y las órdenes de exámenes, además de las indicaciones para tu seguimiento.</p>
+                    </details>
+                    <details class="tele-details tele-faq">
+                        <summary>¿Puedo enviar mis exámenes antes? <i class="ph-bold ph-caret-down tele-caret" aria-hidden="true"></i></summary>
+                        <p>Sí, y te lo recomendamos. Envíalos por WhatsApp (foto o PDF) al agendar: análisis de laboratorio, densitometrías, ecografías, radiografías o informes previos. Así el doctor puede revisarlos antes de la videollamada.</p>
+                    </details>
+                    <details class="tele-details tele-faq">
+                        <summary>¿Qué llevo a mi primera consulta presencial? <i class="ph-bold ph-caret-down tele-caret" aria-hidden="true"></i></summary>
+                        <p>Tu documento de identidad, tus exámenes previos (análisis, radiografías, ecografías o densitometrías) y la lista de los medicamentos que tomas, con sus dosis.</p>
+                    </details>
+                    <details class="tele-details tele-faq">
+                        <summary>¿Y si necesito un examen presencial (densitometría o ecografía)? <i class="ph-bold ph-caret-down tele-caret" aria-hidden="true"></i></summary>
+                        <p>Si el doctor lo considera necesario, puedes realizarte la densitometría ósea o la ecografía articular en nuestra sede de Lima.</p>
+                    </details>
+                    <details class="tele-details tele-faq">
+                        <summary>¿Atienden urgencias? <i class="ph-bold ph-caret-down tele-caret" aria-hidden="true"></i></summary>
+                        <p>No. La teleconsulta no atiende urgencias. Si tienes una urgencia, acude de inmediato al servicio de emergencias más cercano.</p>
+                    </details>
+                </div>
+                <p class="med-note mt-8">
+                    <i class="ph-fill ph-info" aria-hidden="true"></i>
+                    <span>La información de esta página es orientativa y no reemplaza una consulta médica.</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────────────────────────
+             TU MÉDICO — #medicos
+             Único médico del sitio: Dr. Daniel Collcca. Datos editables en site-config.js (SITE.doctor).
+             FOTO REAL PENDIENTE: assets/img/dr-collcca.webp (retrato vertical 800×1000).
+             Mientras no exista, se ve el monograma "DC".
+        ─────────────────────────────────────────────────────── -->
+        <section id="medicos" class="py-20 md:py-28 bg-white overflow-hidden" aria-labelledby="medicos-title">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-14 lg:gap-16 items-center">
+
+                    <figure class="relative mx-auto w-full max-w-sm lg:max-w-none reveal-left">
+                        <div class="tele-photo relative aspect-[4/5] rounded-card overflow-hidden shadow-premium border border-slate-200/80">
+                            <div class="tele-photo-placeholder absolute inset-0 flex items-center justify-center" aria-hidden="true"><span>DC</span></div>
+                            <img src="assets/img/dr-collcca.webp"
+                                 alt="Dr. Daniel Collcca, médico reumatólogo de SERMEKARE"
+                                 width="800" height="1000" loading="lazy" decoding="async"
+                                 class="relative w-full h-full object-cover"
+                                 data-doctor-photo>
+                        </div>
+                        <figcaption class="doc-seal seal-gold"><i class="ph-fill ph-seal-check" aria-hidden="true"></i> Reumatólogo colegiado</figcaption>
+                    </figure>
+
+                    <div class="reveal-right">
+                        <span class="eyebrow mb-5"><i class="ph-fill ph-user-circle" aria-hidden="true"></i> Tu médico</span>
+                        <h2 id="medicos-title" class="font-heading text-4xl md:text-5xl font-bold text-navy leading-tight" data-site="doctor.nombre">Dr. Daniel Collcca</h2>
+                        <p class="text-petrol font-bold text-xl mt-2">Médico Reumatólogo</p>
+                        <p class="text-slate-600 mt-1">CMP <span class="is-placeholder" data-site="doctor.cmp">[CMP]</span> · RNE <span class="is-placeholder" data-site="doctor.rne">[RNE]</span></p>
+
+                        <p class="text-slate-700 text-lg leading-relaxed mt-6 max-w-[62ch]">Te atiende siempre el mismo médico. El Dr. Collcca se toma el tiempo de escuchar tu historia, revisa tus exámenes y diseña contigo un plan de tratamiento claro, con seguimiento cercano en cada control.</p>
+
+                        <h3 class="font-heading font-bold text-lg text-navy mt-8 mb-3">Condiciones que trata</h3>
+                        <ul class="chip-list" role="list">
+                            <li><i class="ph-fill ph-check-circle" aria-hidden="true"></i> Artrosis y dolor de rodilla</li>
+                            <li><i class="ph-fill ph-check-circle" aria-hidden="true"></i> Artritis reumatoide</li>
+                            <li><i class="ph-fill ph-check-circle" aria-hidden="true"></i> Osteoporosis</li>
+                            <li><i class="ph-fill ph-check-circle" aria-hidden="true"></i> Lupus</li>
+                            <li><i class="ph-fill ph-check-circle" aria-hidden="true"></i> Fibromialgia</li>
+                            <li><i class="ph-fill ph-check-circle" aria-hidden="true"></i> Gota</li>
                         </ul>
+
+                        <h3 class="font-heading font-bold text-lg text-navy mt-8 mb-3">Cómo te atiende</h3>
+                        <ul class="check-list" role="list">
+                            <li><i class="ph-fill ph-heart" aria-hidden="true"></i> Consulta sin apuros, con tiempo para tus preguntas y las de tu familia.</li>
+                            <li><i class="ph-fill ph-chat-circle-text" aria-hidden="true"></i> Explicaciones claras, sin palabras difíciles.</li>
+                            <li><i class="ph-fill ph-map-pin" aria-hidden="true"></i> Presencial en Lima y por teleconsulta en todo el Perú.</li>
+                        </ul>
+                        <!-- Formación (universidad, especialidad, sociedades): PENDIENTE de datos reales → SITE.doctor.formacion -->
+                        <ul class="check-list mt-3" role="list" data-doctor-formacion hidden></ul>
+
+                        <div class="mt-10">
+                            <a href="#agendar" class="btn btn--primary btn--lg w-full sm:w-auto" data-book="teleconsulta">
+                                <i class="ph-fill ph-calendar-check text-xl" aria-hidden="true"></i>
+                                Agendar con el Dr. Collcca
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- ─────────────────────────────────────────────────────
-             EQUIPO DE APOYO — #staff
-             Ninguna persona de apoyo se presenta como médico: el único médico es el Dr. Collcca.
-             Nombres y fotos reales: PENDIENTES (ver lista de pendientes en README).
+             SERVICIOS — #servicios
+             Solo servicios confirmados: consulta reumatológica (presencial y virtual),
+             densitometría ósea, ecografía articular e infiltraciones ecoguiadas.
+             Los botones [data-book] abren la agenda (booking.js) con el tipo y el motivo precargados.
         ─────────────────────────────────────────────────────── -->
-        <section id="staff" class="py-20 md:py-28 bg-surface border-y border-slate-200/80 overflow-hidden" aria-labelledby="staff-title">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="servicios" class="py-20 md:py-28 bg-white relative overflow-hidden" aria-labelledby="servicios-title">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
                 <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16 reveal">
-                    <span class="eyebrow mb-5"><i class="ph-fill ph-users-three" aria-hidden="true"></i> Equipo de apoyo</span>
-                    <h2 id="staff-title" class="font-heading text-3xl md:text-4xl font-bold text-navy mb-4">Te acompañamos en cada paso</h2>
-                    <p class="text-slate-600 text-lg leading-relaxed">Un equipo técnico y asistencial cuida que tu atención sea segura y ordenada. El diagnóstico y el tratamiento siempre los realiza el Dr. Daniel Collcca.</p>
+                    <span class="eyebrow mb-5"><i class="ph-fill ph-first-aid-kit" aria-hidden="true"></i> Servicios</span>
+                    <h2 id="servicios-title" class="font-heading text-3xl md:text-5xl font-bold text-navy leading-tight mb-5">
+                        Consulta y diagnóstico en un solo lugar
+                    </h2>
+                    <p class="text-slate-600 text-lg leading-relaxed">Evaluación reumatológica con el Dr. Collcca y los exámenes que necesitas para entender tu dolor articular, sin ir de un lado a otro.</p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-6 md:gap-8">
 
-                    <article class="glass-card glass-card--hover reveal p-6 md:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
-                        <!-- FOTO REAL PENDIENTE: reemplazar por foto del personal de enfermería -->
-                        <img src="assets/img/apoyo-enfermeria.webp"
-                             alt="Personal de enfermería de SERMEKARE"
-                             width="240" height="240" loading="lazy" decoding="async"
-                             class="staff-photo w-28 h-28 shrink-0 rounded-card object-cover">
-                        <div>
-                            <h3 class="font-heading font-bold text-xl text-navy mb-1">Enfermería</h3>
-                            <p class="text-petrol font-semibold text-sm mb-3">Triaje y cuidados</p>
-                            <p class="text-slate-600 text-base leading-relaxed">Toma de signos vitales, curaciones y apoyo en procedimientos como las infiltraciones.</p>
+                    <article id="servicio-consulta" class="svc-card glass-card glass-card--hover reveal" aria-labelledby="servicio-consulta-title">
+                        <div class="svc-icon" aria-hidden="true"><i class="ph-fill ph-stethoscope"></i></div>
+                        <h3 id="servicio-consulta-title" class="font-heading font-bold text-2xl text-navy">Consulta reumatológica</h3>
+                        <p class="svc-tag">Presencial en Lima o por teleconsulta</p>
+                        <p class="text-slate-600 leading-relaxed">El Dr. Collcca escucha tu historia, examina tus articulaciones, revisa tus exámenes y te explica con claridad tu diagnóstico y tu tratamiento.</p>
+                        <p class="svc-for"><strong>Para ti si tienes:</strong> dolor o rigidez articular que no pasa, hinchazón, o un diagnóstico previo de artritis, artrosis, lupus u osteoporosis.</p>
+                        <div class="svc-actions">
+                            <a href="#agendar" class="btn btn--primary" data-book="presencial" data-motivo="Consulta reumatológica">Agendar consulta <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>
+                            <a href="#agendar" class="btn btn--outline" data-book="teleconsulta" data-motivo="Consulta reumatológica">Prefiero teleconsulta</a>
                         </div>
                     </article>
 
-                    <article class="glass-card glass-card--hover reveal p-6 md:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
-                        <!-- FOTO REAL PENDIENTE: reemplazar por foto del tecnólogo médico -->
-                        <img src="assets/img/apoyo-tecnologia.webp"
-                             alt="Tecnólogo médico de SERMEKARE"
-                             width="240" height="240" loading="lazy" decoding="async"
-                             class="staff-photo w-28 h-28 shrink-0 rounded-card object-cover">
-                        <div>
-                            <h3 class="font-heading font-bold text-xl text-navy mb-1">Tecnología médica</h3>
-                            <p class="text-petrol font-semibold text-sm mb-3">Densitometría y ecografía</p>
-                            <p class="text-slate-600 text-base leading-relaxed">Realiza tu densitometría ósea con cuidado y precisión, y apoya en la ecografía articular.</p>
+                    <article id="servicio-densito" class="svc-card glass-card glass-card--hover reveal" aria-labelledby="servicio-densito-title">
+                        <div class="svc-icon" aria-hidden="true"><i class="ph-fill ph-bone"></i></div>
+                        <h3 id="servicio-densito-title" class="font-heading font-bold text-2xl text-navy">Densitometría ósea</h3>
+                        <p class="svc-tag">Examen presencial · rápido e indoloro</p>
+                        <p class="text-slate-600 leading-relaxed">Mide la densidad de tus huesos en la columna y la cadera con una dosis muy baja de rayos X. Detecta la osteoporosis antes de que ocurra una fractura.</p>
+                        <p class="svc-for"><strong>Para ti si eres:</strong> mujer después de la menopausia, adulto mayor o tomas corticoides por tiempo prolongado.</p>
+                        <div class="svc-actions">
+                            <a href="#agendar" class="btn btn--primary" data-book="densitometria" data-motivo="Densitometría ósea">Agendar densitometría <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </article>
+
+                    <article id="servicio-eco" class="svc-card glass-card glass-card--hover reveal" aria-labelledby="servicio-eco-title">
+                        <div class="svc-icon" aria-hidden="true"><i class="ph-fill ph-waves"></i></div>
+                        <h3 id="servicio-eco-title" class="font-heading font-bold text-2xl text-navy">Ecografía articular</h3>
+                        <p class="svc-tag">Examen presencial · sin radiación</p>
+                        <p class="text-slate-600 leading-relaxed">Muestra en tiempo real tendones, ligamentos y el interior de tus articulaciones. Permite ver inflamación, derrames o lesiones mientras mueves la articulación.</p>
+                        <p class="svc-for"><strong>Para ti si tienes:</strong> una articulación inflamada, dolor de rodilla localizado o sospecha de tendinitis o bursitis.</p>
+                        <div class="svc-actions">
+                            <a href="#agendar" class="btn btn--primary" data-book="ecografia" data-motivo="Ecografía articular">Agendar ecografía <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </article>
+
+                    <article id="servicio-infiltra" class="svc-card glass-card glass-card--hover reveal" aria-labelledby="servicio-infiltra-title">
+                        <div class="svc-icon" aria-hidden="true"><i class="ph-fill ph-syringe"></i></div>
+                        <h3 id="servicio-infiltra-title" class="font-heading font-bold text-2xl text-navy">Infiltraciones ecoguiadas</h3>
+                        <p class="svc-tag">Procedimiento presencial · con indicación médica</p>
+                        <p class="text-slate-600 leading-relaxed">El medicamento se aplica directamente en la articulación o el tendón, guiado por ecografía para llegar al punto exacto y reducir la inflamación.</p>
+                        <p class="svc-for"><strong>Para ti si tienes:</strong> brotes de artrosis, bursitis o tendinitis que no mejoran con el tratamiento inicial.</p>
+                        <div class="svc-actions">
+                            <a href="#agendar" class="btn btn--primary" data-book="presencial" data-motivo="Evaluación para infiltración ecoguiada">Agendar evaluación <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>
                         </div>
                     </article>
 
                 </div>
+
+                <p class="med-note max-w-3xl mx-auto mt-10 reveal">
+                    <i class="ph-fill ph-info" aria-hidden="true"></i>
+                    <span>Los exámenes y procedimientos se realizan según la indicación del médico. La información de esta página es orientativa y no reemplaza una consulta médica.</span>
+                </p>
             </div>
         </section>
 
@@ -1093,320 +1407,127 @@
         </section>
 
         <!-- ─────────────────────────────────────────────────────
-             SERVICIOS — #servicios
-             Solo servicios confirmados: consulta reumatológica (presencial y virtual),
-             densitometría ósea, ecografía articular e infiltraciones ecoguiadas.
-             Los botones [data-book] abren la agenda (booking.js) con el tipo y el motivo precargados.
+             EQUIPO DE APOYO — #staff
+             Ninguna persona de apoyo se presenta como médico: el único médico es el Dr. Collcca.
+             Nombres y fotos reales: PENDIENTES (ver lista de pendientes en README).
         ─────────────────────────────────────────────────────── -->
-        <section id="servicios" class="py-20 md:py-28 bg-white relative overflow-hidden" aria-labelledby="servicios-title">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <section id="staff" class="py-20 md:py-28 bg-surface border-y border-slate-200/80 overflow-hidden" aria-labelledby="staff-title">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16 reveal">
-                    <span class="eyebrow mb-5"><i class="ph-fill ph-first-aid-kit" aria-hidden="true"></i> Servicios</span>
-                    <h2 id="servicios-title" class="font-heading text-3xl md:text-5xl font-bold text-navy leading-tight mb-5">
-                        Consulta y diagnóstico en un solo lugar
-                    </h2>
-                    <p class="text-slate-600 text-lg leading-relaxed">Evaluación reumatológica con el Dr. Collcca y los exámenes que necesitas para entender tu dolor articular, sin ir de un lado a otro.</p>
+                    <span class="eyebrow mb-5"><i class="ph-fill ph-users-three" aria-hidden="true"></i> Equipo de apoyo</span>
+                    <h2 id="staff-title" class="font-heading text-3xl md:text-4xl font-bold text-navy mb-4">Te acompañamos en cada paso</h2>
+                    <p class="text-slate-600 text-lg leading-relaxed">Un equipo técnico y asistencial cuida que tu atención sea segura y ordenada. El diagnóstico y el tratamiento siempre los realiza el Dr. Daniel Collcca.</p>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
 
-                    <article id="servicio-consulta" class="svc-card glass-card glass-card--hover reveal" aria-labelledby="servicio-consulta-title">
-                        <div class="svc-icon" aria-hidden="true"><i class="ph-fill ph-stethoscope"></i></div>
-                        <h3 id="servicio-consulta-title" class="font-heading font-bold text-2xl text-navy">Consulta reumatológica</h3>
-                        <p class="svc-tag">Presencial en Lima o por teleconsulta</p>
-                        <p class="text-slate-600 leading-relaxed">El Dr. Collcca escucha tu historia, examina tus articulaciones, revisa tus exámenes y te explica con claridad tu diagnóstico y tu tratamiento.</p>
-                        <p class="svc-for"><strong>Para ti si tienes:</strong> dolor o rigidez articular que no pasa, hinchazón, o un diagnóstico previo de artritis, artrosis, lupus u osteoporosis.</p>
-                        <div class="svc-actions">
-                            <a href="#agendar" class="btn btn--primary" data-book="presencial" data-motivo="Consulta reumatológica">Agendar consulta <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>
-                            <a href="#agendar" class="btn btn--outline" data-book="teleconsulta" data-motivo="Consulta reumatológica">Prefiero teleconsulta</a>
+                    <article class="glass-card glass-card--hover reveal p-6 md:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
+                        <!-- FOTO REAL PENDIENTE: reemplazar por foto del personal de enfermería -->
+                        <img src="assets/img/apoyo-enfermeria.webp"
+                             alt="Personal de enfermería de SERMEKARE"
+                             width="240" height="240" loading="lazy" decoding="async"
+                             class="staff-photo w-28 h-28 shrink-0 rounded-card object-cover">
+                        <div>
+                            <h3 class="font-heading font-bold text-xl text-navy mb-1">Enfermería</h3>
+                            <p class="text-petrol font-semibold text-sm mb-3">Triaje y cuidados</p>
+                            <p class="text-slate-600 text-base leading-relaxed">Toma de signos vitales, curaciones y apoyo en procedimientos como las infiltraciones.</p>
                         </div>
                     </article>
 
-                    <article id="servicio-densito" class="svc-card glass-card glass-card--hover reveal" aria-labelledby="servicio-densito-title">
-                        <div class="svc-icon" aria-hidden="true"><i class="ph-fill ph-bone"></i></div>
-                        <h3 id="servicio-densito-title" class="font-heading font-bold text-2xl text-navy">Densitometría ósea</h3>
-                        <p class="svc-tag">Examen presencial · rápido e indoloro</p>
-                        <p class="text-slate-600 leading-relaxed">Mide la densidad de tus huesos en la columna y la cadera con una dosis muy baja de rayos X. Detecta la osteoporosis antes de que ocurra una fractura.</p>
-                        <p class="svc-for"><strong>Para ti si eres:</strong> mujer después de la menopausia, adulto mayor o tomas corticoides por tiempo prolongado.</p>
-                        <div class="svc-actions">
-                            <a href="#agendar" class="btn btn--primary" data-book="densitometria" data-motivo="Densitometría ósea">Agendar densitometría <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-                    </article>
-
-                    <article id="servicio-eco" class="svc-card glass-card glass-card--hover reveal" aria-labelledby="servicio-eco-title">
-                        <div class="svc-icon" aria-hidden="true"><i class="ph-fill ph-waves"></i></div>
-                        <h3 id="servicio-eco-title" class="font-heading font-bold text-2xl text-navy">Ecografía articular</h3>
-                        <p class="svc-tag">Examen presencial · sin radiación</p>
-                        <p class="text-slate-600 leading-relaxed">Muestra en tiempo real tendones, ligamentos y el interior de tus articulaciones. Permite ver inflamación, derrames o lesiones mientras mueves la articulación.</p>
-                        <p class="svc-for"><strong>Para ti si tienes:</strong> una articulación inflamada, dolor de rodilla localizado o sospecha de tendinitis o bursitis.</p>
-                        <div class="svc-actions">
-                            <a href="#agendar" class="btn btn--primary" data-book="ecografia" data-motivo="Ecografía articular">Agendar ecografía <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-                    </article>
-
-                    <article id="servicio-infiltra" class="svc-card glass-card glass-card--hover reveal" aria-labelledby="servicio-infiltra-title">
-                        <div class="svc-icon" aria-hidden="true"><i class="ph-fill ph-syringe"></i></div>
-                        <h3 id="servicio-infiltra-title" class="font-heading font-bold text-2xl text-navy">Infiltraciones ecoguiadas</h3>
-                        <p class="svc-tag">Procedimiento presencial · con indicación médica</p>
-                        <p class="text-slate-600 leading-relaxed">El medicamento se aplica directamente en la articulación o el tendón, guiado por ecografía para llegar al punto exacto y reducir la inflamación.</p>
-                        <p class="svc-for"><strong>Para ti si tienes:</strong> brotes de artrosis, bursitis o tendinitis que no mejoran con el tratamiento inicial.</p>
-                        <div class="svc-actions">
-                            <a href="#agendar" class="btn btn--primary" data-book="presencial" data-motivo="Evaluación para infiltración ecoguiada">Agendar evaluación <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>
+                    <article class="glass-card glass-card--hover reveal p-6 md:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
+                        <!-- FOTO REAL PENDIENTE: reemplazar por foto del tecnólogo médico -->
+                        <img src="assets/img/apoyo-tecnologia.webp"
+                             alt="Tecnólogo médico de SERMEKARE"
+                             width="240" height="240" loading="lazy" decoding="async"
+                             class="staff-photo w-28 h-28 shrink-0 rounded-card object-cover">
+                        <div>
+                            <h3 class="font-heading font-bold text-xl text-navy mb-1">Tecnología médica</h3>
+                            <p class="text-petrol font-semibold text-sm mb-3">Densitometría y ecografía</p>
+                            <p class="text-slate-600 text-base leading-relaxed">Realiza tu densitometría ósea con cuidado y precisión, y apoya en la ecografía articular.</p>
                         </div>
                     </article>
 
                 </div>
-
-                <p class="med-note max-w-3xl mx-auto mt-10 reveal">
-                    <i class="ph-fill ph-info" aria-hidden="true"></i>
-                    <span>Los exámenes y procedimientos se realizan según la indicación del médico. La información de esta página es orientativa y no reemplaza una consulta médica.</span>
-                </p>
             </div>
         </section>
 
         <!-- ─────────────────────────────────────────────────────
-             TELECONSULTA — #teleconsulta
-             Consulta virtual con el Dr. Collcca: foto + audio (humanización)
-             y pasos + CTA WhatsApp (conversión). H2 → H3 en orden.
-             TODO: reemplazar los placeholders [ENTRE_CORCHETES] por datos reales.
+             NOSOTROS — #nosotros
         ─────────────────────────────────────────────────────── -->
-        <section id="teleconsulta" class="tele-section relative py-24 md:py-32 overflow-hidden border-y border-gray-100" aria-labelledby="teleconsulta-title">
-            <div class="tele-blur" aria-hidden="true"></div>
-            <div class="tele-blur tele-blur--secondary" aria-hidden="true"></div>
+        <section id="nosotros" class="py-20 md:py-32 bg-white relative overflow-hidden" aria-labelledby="nosotros-title">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-            <!-- Horario de teleconsulta para el badge de disponibilidad (main.js → initAvailabilityBadge).
-                 TODO [HORARIO_TELECONSULTA]: define "horario" con días 0 (domingo) a 6 (sábado), p. ej.
-                 "horario": { "1": ["09:00", "13:00"], "3": ["15:00", "19:00"] }
-                 Mientras sea null, el badge solo dice "Citas virtuales disponibles" (nunca "Disponible hoy"). -->
-            <script type="application/json" id="teleconsulta-config">
-                { "timezone": "America/Lima", "horario": null }
-            </script>
+                    <!-- Imagen equipo -->
+                    <div class="relative reveal-zoom order-2 lg:order-1">
+                        <picture>
+                            <source srcset="https://images.unsplash.com/photo-1538108149393-cebb518e5fb0?q=80&w=800&auto=format&fit=crop&fm=webp" type="image/webp">
+                            <img src="https://images.unsplash.com/photo-1538108149393-cebb518e5fb0?q=80&w=800&auto=format&fit=crop"
+                                 alt="Consultorio de SERMEKARE en Lima, Perú"
+                                 loading="lazy"
+                                 class="rounded-[2.5rem] shadow-2xl w-full object-cover aspect-[4/5] border border-gray-100 img-zoom"
+                                 width="800"
+                                 height="1000">
+                        </picture>
+                        <!-- Card flotante -->
+                        <aside class="absolute -bottom-6 -right-6 bg-white/95 backdrop-blur-sm p-6 rounded-3xl shadow-premium border border-gray-100 hidden md:block max-w-[280px] hover:-translate-y-2 transition-transform duration-400"
+                               aria-label="Enfoque humano SERMEKARE">
+                            <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-brand-blue mb-4 shadow-sm" aria-hidden="true">
+                                <i class="ph-fill ph-hand-heart text-3xl"></i>
+                            </div>
+                            <p class="font-bold text-gray-900 mb-2 text-lg">Enfoque Humano</p>
+                            <p class="text-sm text-gray-600 leading-relaxed">No tratamos enfermedades, tratamos personas. Escuchamos activamente para entender tu <strong>dolor real</strong>.</p>
+                        </aside>
+                    </div>
 
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-[auto_1fr] gap-x-16 gap-y-12 items-start">
+                    <!-- Contenido textual -->
+                    <div class="reveal-right order-1 lg:order-2">
+                        <span class="inline-block bg-blue-50 text-brand-blue font-bold px-4 py-1.5 rounded-full text-xs tracking-wider uppercase mb-6">Conoce SERMEKARE</span>
 
-                    <!-- Encabezado (columna derecha en desktop, primero en mobile) -->
-                    <header class="reveal lg:col-start-2 lg:row-start-1">
-                        <span class="inline-flex items-center gap-2 bg-blue-50 text-brand-blue font-bold px-4 py-1.5 rounded-full text-xs tracking-wider uppercase mb-6 shadow-sm border border-blue-100">
-                            <i class="ph-fill ph-video-camera text-base" aria-hidden="true"></i>
-                            Consulta Virtual · Todo el Perú
-                        </span>
-                        <h2 id="teleconsulta-title" class="font-heading text-3xl md:text-5xl font-bold text-brand-dark mb-6 leading-tight">
-                            Consulta reumatológica virtual: atención sin traslados por videollamada
+                        <h2 id="nosotros-title" class="font-heading text-3xl md:text-5xl font-bold text-brand-dark mb-6 leading-tight">
+                            Más que una clínica, tu aliado para vivir sin dolor
                         </h2>
-                        <p class="text-gray-600 text-lg leading-relaxed mb-8">
-                            Si tienes <strong>dolor de rodilla</strong>, artritis, artrosis, lupus u osteoporosis, puedes atenderte con un reumatólogo desde casa. Es ideal si te cuesta movilizarte o si vives fuera de Lima: te escuchamos, revisamos tus exámenes y te acompañamos en tu tratamiento.
-                        </p>
-                        <ul class="flex flex-wrap gap-3" role="list" aria-label="Plataformas para la videollamada">
-                            <li class="tele-chip">
-                                <i class="ph-fill ph-whatsapp-logo text-xl text-[#128C7E]" aria-hidden="true"></i>
-                                WhatsApp Videollamada
-                            </li>
-                            <li class="tele-chip">
-                                <i class="ph-fill ph-video-camera text-xl text-brand-blue" aria-hidden="true"></i>
-                                Zoom
-                            </li>
-                            <li class="tele-chip">
-                                <i class="ph-bold ph-google-logo text-xl text-brand-blue" aria-hidden="true"></i>
-                                Google Meet
-                            </li>
-                        </ul>
-                    </header>
 
-                    <!-- Columna humanización: foto, ficha, audio y transcripción -->
-                    <div class="reveal-left lg:col-start-1 lg:row-start-1 lg:row-span-2 w-full max-w-xl mx-auto lg:max-w-none">
-
-                        <!-- 1. Foto del doctor + badge de disponibilidad -->
-                        <figure class="tele-photo relative">
-                            <div class="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border-4 border-white shadow-premium">
-                                <!-- Placeholder visible si la foto aún no existe (assets/img/dr-collcca.webp) -->
-                                <div class="tele-photo-placeholder absolute inset-0 flex items-center justify-center" aria-hidden="true">
-                                    <span>DC</span>
-                                </div>
-                                <picture>
-                                    <source srcset="assets/img/dr-collcca.webp" type="image/webp">
-                                    <img src="assets/img/dr-collcca.webp"
-                                         alt="Dr. Daniel Collcca, médico reumatólogo, teleconsulta reumatológica por videollamada en Perú"
-                                         width="800"
-                                         height="1000"
-                                         loading="lazy"
-                                         decoding="async"
-                                         class="relative w-full h-full object-cover"
-                                         data-tele-photo>
-                                </picture>
-                            </div>
-                            <p class="tele-availability absolute left-4 bottom-4 sm:left-6 sm:bottom-6 inline-flex items-center gap-2.5 bg-white/95 backdrop-blur-sm text-brand-dark text-sm font-bold px-4 py-2.5 rounded-full shadow-premium border border-gray-100" data-availability>
-                                <span class="tele-dot" aria-hidden="true"></span>
-                                <span data-availability-text>Citas virtuales disponibles</span>
-                            </p>
-                        </figure>
-
-                        <!-- 2. Ficha breve -->
-                        <div class="mt-8 text-center lg:text-left">
-                            <h3 class="font-heading font-extrabold text-2xl md:text-3xl text-brand-dark mb-1 [overflow-wrap:anywhere]">Dr. Daniel Collcca</h3>
-                            <p class="text-brand-blue font-bold text-lg">Médico Reumatólogo</p>
-                            <p class="text-gray-600 text-sm mt-1">CMP: [CMP] · RNE: [RNE]</p>
+                        <div class="mb-8 text-gray-600 text-lg leading-relaxed space-y-4">
+                            <p>SERMEKARE nace de la necesidad de ofrecer un <strong>diagnóstico reumatológico certero en Perú</strong>. Sabemos que el <em>dolor articular crónico</em> desgasta física y emocionalmente.</p>
+                            <p>Por eso, reunimos la atención de un reumatólogo dedicado, tecnología de imagen (ecógrafos y densitómetros para <strong>densitometría ósea</strong>) y un trato empático para devolverte la independencia que mereces.</p>
                         </div>
 
-                        <!-- 3. Reproductor de audio (progressive enhancement: sin JS se ve el <audio controls> nativo) -->
-                        <div class="tele-player mt-8 bg-white rounded-[2rem] p-5 sm:p-8 shadow-premium border border-gray-100" data-audio-player data-state="idle">
-                            <p id="tele-audio-title" class="font-heading font-bold text-brand-dark text-lg leading-snug flex items-start gap-3">
-                                <i class="ph-fill ph-microphone text-2xl text-brand-accent shrink-0" aria-hidden="true"></i>
-                                <span>Escucha cómo es una consulta virtual con el Dr. Collcca <span class="text-gray-500 font-medium text-sm whitespace-nowrap" data-audio-duration-label></span></span>
-                            </p>
-
-                            <audio src="assets/audio/dr-collcca-presentacion.mp3"
-                                   preload="none"
-                                   controls
-                                   class="w-full mt-5"
-                                   aria-labelledby="tele-audio-title"
-                                   data-audio>
-                                Tu navegador no puede reproducir este audio. Lee la transcripción abajo.
-                            </audio>
-
-                            <div class="tele-player-ui mt-5" data-audio-ui hidden>
-                                <div class="tele-player-main">
-                                    <button type="button" class="tele-play" aria-label="Reproducir mensaje del Dr. Collcca" data-audio-toggle>
-                                        <i class="ph-fill ph-play text-2xl" aria-hidden="true" data-icon-play></i>
-                                        <i class="ph-fill ph-pause text-2xl" aria-hidden="true" data-icon-pause></i>
-                                        <span class="tele-spinner" aria-hidden="true"></span>
-                                    </button>
-
-                                    <div class="tele-player-track">
-                                        <div class="tele-wave" aria-hidden="true">
-                                            <span></span><span></span><span></span><span></span><span></span><span></span>
-                                            <span></span><span></span><span></span><span></span><span></span><span></span>
-                                            <span></span><span></span><span></span><span></span><span></span><span></span>
-                                            <span></span><span></span><span></span><span></span><span></span><span></span>
-                                        </div>
-                                        <div class="tele-progress"
-                                             role="slider"
-                                             tabindex="0"
-                                             aria-label="Posición del audio"
-                                             aria-valuemin="0"
-                                             aria-valuemax="0"
-                                             aria-valuenow="0"
-                                             aria-valuetext="0:00 de 0:00"
-                                             data-audio-progress>
-                                            <div class="tele-progress-track"><div class="tele-progress-fill"></div></div>
-                                            <div class="tele-progress-thumb"></div>
-                                        </div>
-                                        <div class="tele-times" aria-hidden="true">
-                                            <span data-audio-current>0:00</span>
-                                            <span data-audio-total>--:--</span>
-                                        </div>
-                                    </div>
+                        <!-- Misión y visión -->
+                        <div class="grid sm:grid-cols-2 gap-6 mb-8">
+                            <div class="bg-brand-light p-6 rounded-2xl border border-gray-100 hover:border-brand-accent/50 transition-colors">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <i class="ph-fill ph-target text-brand-accent text-2xl" aria-hidden="true"></i>
+                                    <h3 class="font-heading font-bold text-brand-dark text-lg">Nuestra Misión</h3>
                                 </div>
-
-                                <div class="tele-player-controls">
-                                    <button type="button" class="tele-ctrl" aria-label="Velocidad de reproducción: 1x" data-audio-speed>1x</button>
-                                    <button type="button" class="tele-ctrl" aria-label="Silenciar audio" aria-pressed="false" data-audio-mute>
-                                        <i class="ph-bold ph-speaker-high text-xl" aria-hidden="true" data-icon-unmuted></i>
-                                        <i class="ph-bold ph-speaker-slash text-xl" aria-hidden="true" data-icon-muted></i>
-                                    </button>
-                                </div>
+                                <p class="text-sm text-gray-600 leading-relaxed">Diagnosticar y tratar enfermedades reumatológicas con precisión científica y calor humano, mejorando tu calidad de vida.</p>
                             </div>
-
-                            <p class="tele-player-error mt-5" role="alert" data-audio-error hidden>
-                                <i class="ph-fill ph-warning-circle text-xl shrink-0" aria-hidden="true"></i>
-                                No pudimos cargar el audio. Lee la transcripción abajo.
-                            </p>
-
-                            <!-- 4. Transcripción (accesibilidad + contenido indexable) -->
-                            <details class="tele-details mt-5 border-t border-gray-100 pt-4">
-                                <summary class="font-bold text-brand-blue">
-                                    Leer transcripción
-                                    <i class="ph-bold ph-caret-down tele-caret" aria-hidden="true"></i>
-                                </summary>
-                                <div class="text-gray-600 leading-relaxed pt-3">
-                                    <!-- TODO: pegar aquí la transcripción completa del audio (y en el JSON-LD AudioObject.transcript) -->
-                                    <p>[TRANSCRIPCION_AUDIO]</p>
+                            <div class="bg-brand-light p-6 rounded-2xl border border-gray-100 hover:border-brand-accent/50 transition-colors">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <i class="ph-fill ph-eye text-brand-accent text-2xl" aria-hidden="true"></i>
+                                    <h3 class="font-heading font-bold text-brand-dark text-lg">Nuestra Visión</h3>
                                 </div>
-                            </details>
+                                <p class="text-sm text-gray-600 leading-relaxed">Ser el centro médico de referencia nacional en innovación terapéutica y erradicación del <em>dolor articular</em>.</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Columna conversión: pasos + CTA -->
-                    <div class="reveal-right lg:col-start-2 lg:row-start-2">
-                        <h3 class="font-heading font-bold text-2xl md:text-3xl text-brand-dark mb-8">Cómo funciona</h3>
-                        <ol class="tele-steps space-y-6 mb-10" role="list">
-                            <li class="tele-step">
-                                <span class="tele-step-num" aria-hidden="true">1</span>
-                                <div>
-                                    <p class="font-bold text-gray-900 text-lg">Escríbenos por WhatsApp</p>
-                                    <p class="text-gray-600 mt-1">Cuéntanos tus síntomas y envía tus exámenes previos (análisis, densitometría, ecografías).</p>
-                                </div>
+                        <!-- Diferenciadores -->
+                        <h3 class="font-bold text-gray-900 mb-4 text-lg">¿Por qué elegirnos?</h3>
+                        <ul class="space-y-3" role="list">
+                            <li class="flex items-center gap-3 bg-white border border-gray-100 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                <i class="ph-fill ph-check-circle text-brand-accent text-xl" aria-hidden="true"></i>
+                                <span class="font-medium text-gray-700">Equipos de diagnóstico en la misma clínica (sin traslados).</span>
                             </li>
-                            <li class="tele-step">
-                                <span class="tele-step-num" aria-hidden="true">2</span>
-                                <div>
-                                    <p class="font-bold text-gray-900 text-lg">Videollamada personalizada</p>
-                                    <p class="text-gray-600 mt-1">Conversa con el Dr. Collcca por Zoom, Meet o WhatsApp.</p>
-                                </div>
+                            <li class="flex items-center gap-3 bg-white border border-gray-100 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                <i class="ph-fill ph-check-circle text-brand-accent text-xl" aria-hidden="true"></i>
+                                <span class="font-medium text-gray-700">Un reumatólogo colegiado que conoce tu caso de principio a fin.</span>
                             </li>
-                            <li class="tele-step">
-                                <span class="tele-step-num" aria-hidden="true">3</span>
-                                <div>
-                                    <p class="font-bold text-gray-900 text-lg">Plan de tratamiento y seguimiento</p>
-                                    <p class="text-gray-600 mt-1">Recibe tu plan de tratamiento, receta digital y órdenes de exámenes, con seguimiento.</p>
-                                </div>
-                            </li>
-                        </ol>
-
-                        <!-- TODO [NUMERO_WHATSAPP]: formato internacional sin "+" ni espacios, p. ej. 51XXXXXXXXX -->
-                        <a href="https://wa.me/[NUMERO_WHATSAPP]?text=Hola%2C%20deseo%20agendar%20una%20teleconsulta%20virtual%20con%20el%20Dr.%20Collcca"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="tele-cta btn-shine flex items-center justify-center gap-3 w-full sm:w-auto sm:inline-flex px-8 py-5 rounded-2xl text-lg md:text-xl font-bold">
-                            <i class="ph-fill ph-whatsapp-logo text-3xl" aria-hidden="true"></i>
-                            Agendar videollamada con el Dr. Collcca
-                        </a>
-                        <a href="#faq-teleconsulta" class="inline-flex items-center gap-2 min-h-[44px] mt-3 font-bold text-brand-blue hover:text-brand-accent transition-colors underline-offset-4 hover:underline">
-                            Ver preguntas frecuentes <i class="ph-bold ph-arrow-down" aria-hidden="true"></i>
-                        </a>
-
-                        <ul class="mt-6 space-y-2 text-sm text-gray-600" role="list">
-                            <li class="flex items-start gap-2">
-                                <i class="ph-fill ph-shield-check text-lg text-brand-blue shrink-0" aria-hidden="true"></i>
-                                Atención conforme a la Ley Marco de Telesalud (Ley N.º 30421)
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="ph-fill ph-clock text-lg text-brand-blue shrink-0" aria-hidden="true"></i>
-                                Horario: [HORARIO_TELECONSULTA]
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="ph-fill ph-credit-card text-lg text-brand-blue shrink-0" aria-hidden="true"></i>
-                                Forma de pago: [METODOS_PAGO]
+                            <li class="flex items-center gap-3 bg-white border border-gray-100 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                <i class="ph-fill ph-check-circle text-brand-accent text-xl" aria-hidden="true"></i>
+                                <span class="font-medium text-gray-700">Tratamientos basados en guías médicas internacionales.</span>
                             </li>
                         </ul>
-                    </div>
-                </div>
-
-                <!-- FAQ — mismo texto que el FAQPage del JSON-LD (mantener sincronizado) -->
-                <div id="faq-teleconsulta" class="mt-20 md:mt-28 max-w-4xl mx-auto reveal">
-                    <h3 class="font-heading font-bold text-2xl md:text-4xl text-brand-dark text-center mb-10">Preguntas frecuentes sobre la teleconsulta</h3>
-                    <div class="space-y-4">
-                        <details class="tele-details tele-faq">
-                            <summary>¿Qué necesito para la consulta virtual? <i class="ph-bold ph-caret-down tele-caret" aria-hidden="true"></i></summary>
-                            <p>Un celular, tablet o computadora con cámara, micrófono e internet estable, y WhatsApp, Zoom o Google Meet (el que prefieras). Ten a la mano tus exámenes previos y la lista de medicamentos que tomas.</p>
-                        </details>
-                        <details class="tele-details tele-faq">
-                            <summary>¿Cómo y cuándo pago? <i class="ph-bold ph-caret-down tele-caret" aria-hidden="true"></i></summary>
-                            <p>Al agendar por WhatsApp te confirmamos el monto, el momento del pago y los datos para pagar. Métodos de pago: [METODOS_PAGO].</p>
-                        </details>
-                        <details class="tele-details tele-faq">
-                            <summary>¿Recibo receta y órdenes de exámenes? <i class="ph-bold ph-caret-down tele-caret" aria-hidden="true"></i></summary>
-                            <p>Sí. Al terminar la videollamada recibes en formato digital tu plan de tratamiento y, si el doctor lo indica, la receta y las órdenes de exámenes, además de las indicaciones para tu seguimiento.</p>
-                        </details>
-                        <details class="tele-details tele-faq">
-                            <summary>¿Puedo enviar mis exámenes antes? <i class="ph-bold ph-caret-down tele-caret" aria-hidden="true"></i></summary>
-                            <p>Sí, y te lo recomendamos. Envíalos por WhatsApp (foto o PDF) al agendar: análisis de laboratorio, densitometrías, ecografías, radiografías o informes previos. Así el doctor puede revisarlos antes de la videollamada.</p>
-                        </details>
-                        <details class="tele-details tele-faq">
-                            <summary>¿Y si necesito un examen presencial (densitometría o ecografía)? <i class="ph-bold ph-caret-down tele-caret" aria-hidden="true"></i></summary>
-                            <p>Si el doctor lo considera necesario, puedes realizarte la densitometría ósea o la ecografía articular en nuestra sede de Lima. Conoce nuestros <a href="#servicios" class="font-bold text-brand-blue underline underline-offset-4 hover:text-brand-accent">servicios de diagnóstico</a>.</p>
-                        </details>
                     </div>
                 </div>
             </div>
@@ -1498,66 +1619,6 @@
                         </div>
                     </article>
 
-                </div>
-            </div>
-        </section>
-
-        <!-- ─────────────────────────────────────────────────────
-             TU MÉDICO — #medicos
-             Único médico del sitio: Dr. Daniel Collcca. Datos editables en site-config.js (SITE.doctor).
-             FOTO REAL PENDIENTE: assets/img/dr-collcca.webp (retrato vertical 800×1000).
-             Mientras no exista, se ve el monograma "DC".
-        ─────────────────────────────────────────────────────── -->
-        <section id="medicos" class="py-20 md:py-28 bg-white overflow-hidden" aria-labelledby="medicos-title">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-14 lg:gap-16 items-center">
-
-                    <figure class="relative mx-auto w-full max-w-sm lg:max-w-none reveal-left">
-                        <div class="tele-photo relative aspect-[4/5] rounded-card overflow-hidden shadow-premium border border-slate-200/80">
-                            <div class="tele-photo-placeholder absolute inset-0 flex items-center justify-center" aria-hidden="true"><span>DC</span></div>
-                            <img src="assets/img/dr-collcca.webp"
-                                 alt="Dr. Daniel Collcca, médico reumatólogo de SERMEKARE"
-                                 width="800" height="1000" loading="lazy" decoding="async"
-                                 class="relative w-full h-full object-cover"
-                                 data-doctor-photo>
-                        </div>
-                        <figcaption class="doc-seal seal-gold"><i class="ph-fill ph-seal-check" aria-hidden="true"></i> Reumatólogo colegiado</figcaption>
-                    </figure>
-
-                    <div class="reveal-right">
-                        <span class="eyebrow mb-5"><i class="ph-fill ph-user-circle" aria-hidden="true"></i> Tu médico</span>
-                        <h2 id="medicos-title" class="font-heading text-4xl md:text-5xl font-bold text-navy leading-tight" data-site="doctor.nombre">Dr. Daniel Collcca</h2>
-                        <p class="text-petrol font-bold text-xl mt-2">Médico Reumatólogo</p>
-                        <p class="text-slate-600 mt-1">CMP <span class="is-placeholder" data-site="doctor.cmp">[CMP]</span> · RNE <span class="is-placeholder" data-site="doctor.rne">[RNE]</span></p>
-
-                        <p class="text-slate-700 text-lg leading-relaxed mt-6 max-w-[62ch]">Te atiende siempre el mismo médico. El Dr. Collcca se toma el tiempo de escuchar tu historia, revisa tus exámenes y diseña contigo un plan de tratamiento claro, con seguimiento cercano en cada control.</p>
-
-                        <h3 class="font-heading font-bold text-lg text-navy mt-8 mb-3">Condiciones que trata</h3>
-                        <ul class="chip-list" role="list">
-                            <li><i class="ph-fill ph-check-circle" aria-hidden="true"></i> Artrosis y dolor de rodilla</li>
-                            <li><i class="ph-fill ph-check-circle" aria-hidden="true"></i> Artritis reumatoide</li>
-                            <li><i class="ph-fill ph-check-circle" aria-hidden="true"></i> Osteoporosis</li>
-                            <li><i class="ph-fill ph-check-circle" aria-hidden="true"></i> Lupus</li>
-                            <li><i class="ph-fill ph-check-circle" aria-hidden="true"></i> Fibromialgia</li>
-                            <li><i class="ph-fill ph-check-circle" aria-hidden="true"></i> Gota</li>
-                        </ul>
-
-                        <h3 class="font-heading font-bold text-lg text-navy mt-8 mb-3">Cómo te atiende</h3>
-                        <ul class="check-list" role="list">
-                            <li><i class="ph-fill ph-heart" aria-hidden="true"></i> Consulta sin apuros, con tiempo para tus preguntas y las de tu familia.</li>
-                            <li><i class="ph-fill ph-chat-circle-text" aria-hidden="true"></i> Explicaciones claras, sin palabras difíciles.</li>
-                            <li><i class="ph-fill ph-map-pin" aria-hidden="true"></i> Presencial en Lima y por teleconsulta en todo el Perú.</li>
-                        </ul>
-                        <!-- Formación (universidad, especialidad, sociedades): PENDIENTE de datos reales → SITE.doctor.formacion -->
-                        <ul class="check-list mt-3" role="list" data-doctor-formacion hidden></ul>
-
-                        <div class="mt-10">
-                            <a href="#agendar" class="btn btn--primary btn--lg w-full sm:w-auto" data-book="teleconsulta">
-                                <i class="ph-fill ph-calendar-check text-xl" aria-hidden="true"></i>
-                                Agendar con el Dr. Collcca
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -1769,23 +1830,30 @@
     </footer>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         BOTÓN FLOTANTE WHATSAPP
+         ACCESOS RÁPIDOS
+         Desktop: botón flotante de WhatsApp. Mobile: barra inferior Llamar · WhatsApp · Agendar.
+         Los href son el respaldo sin JS; main.js → applySiteData los completa desde SITE.
     ════════════════════════════════════════════════════════════════════ -->
-    <a href="https://wa.me/51987654321?text=Hola,%20vengo%20de%20la%20página%20web%20y%20deseo%20agendar%20una%20cita."
+    <a href="https://wa.me/?text=Hola%2C%20vengo%20de%20la%20p%C3%A1gina%20web%20de%20SERMEKARE%20y%20deseo%20agendar%20una%20cita."
        target="_blank"
        rel="noopener noreferrer"
        aria-label="Escríbenos por WhatsApp para agendar tu cita"
-       class="fixed bottom-8 right-8 bg-[#1FA855] text-white w-16 h-16 rounded-full flex items-center justify-center text-4xl shadow-[0_15px_30px_rgba(31,168,85,0.4)] hover:scale-110 hover:-translate-y-1 transition-all z-[60] focus:ring-4 focus:ring-green-300 group">
+       data-wa="general"
+       class="wa-float fixed bottom-8 right-8 z-[60] w-16 h-16 rounded-full flex items-center justify-center text-4xl bg-whatsapp text-navy group">
         <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
-        <span class="absolute top-0 right-0 flex h-4 w-4" aria-hidden="true">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-4 w-4 bg-white border-2 border-[#1FA855]"></span>
-        </span>
-        <span class="absolute right-20 bg-white text-brand-dark text-sm font-bold py-2.5 px-5 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap hidden md:block" aria-hidden="true">
-            ¿Consultas? ¡Escríbenos!
+        <span class="absolute right-20 bg-white text-navy text-sm font-bold py-2.5 px-5 rounded-ctl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap" aria-hidden="true">
+            ¿Consultas? Escríbenos
         </span>
     </a>
 
+    <nav class="mobile-bar" aria-label="Accesos rápidos">
+        <a href="#contacto" class="mb-call" data-tel><i class="ph-fill ph-phone" aria-hidden="true"></i> Llamar</a>
+        <a href="https://wa.me/?text=Hola%2C%20vengo%20de%20la%20p%C3%A1gina%20web%20de%20SERMEKARE%20y%20deseo%20agendar%20una%20cita." class="mb-wa" data-wa="general" target="_blank" rel="noopener noreferrer"><i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i> WhatsApp</a>
+        <a href="#agendar" class="mb-book" data-book><i class="ph-fill ph-calendar-check" aria-hidden="true"></i> Agendar</a>
+    </nav>
+
+    <script src="site-config.js" defer></script>
+    <script src="tele.js" defer></script>
     <script src="main.js" defer></script>
     <script src="anatomia.js" defer></script>
 </body>

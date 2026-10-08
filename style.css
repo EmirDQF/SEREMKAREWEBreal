@@ -433,46 +433,6 @@ input:focus, textarea:focus {
   50%       { transform: scaleY(1);   }
 }
 
-/* ── Fondo diferenciado ── */
-.tele-section {
-  background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 75%);
-}
-
-.tele-blur {
-  position: absolute;
-  top: -10rem;
-  right: -12rem;
-  width: 34rem;
-  height: 34rem;
-  border-radius: 9999px;
-  background: rgba(13,148,136,.16);
-  filter: blur(90px);
-  pointer-events: none;
-}
-
-.tele-blur--secondary {
-  top: auto;
-  right: auto;
-  bottom: 10rem;
-  left: -14rem;
-  background: rgba(14,116,144,.08);
-}
-
-/* ── Badge "Nuevo" del menú ── */
-.tele-new-badge {
-  display: inline-block;
-  padding: .125rem .45rem;
-  border-radius: 9999px;
-  background: #ECFDF5;
-  border: 1px solid #A7F3D0;
-  color: #047857;
-  font-size: .625rem;
-  font-weight: 800;
-  letter-spacing: .06em;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
-
 /* ── Chips de plataformas ── */
 .tele-chip {
   display: inline-flex;
@@ -524,10 +484,6 @@ input:focus, textarea:focus {
   background: inherit;
   animation: telePing 1.8s var(--ease-organic) infinite;
 }
-
-/* "Próxima atención: …" → punto ámbar estático (no simula disponibilidad inmediata) */
-.tele-availability[data-state="later"] .tele-dot { background: #F59E0B; }
-.tele-availability[data-state="later"] .tele-dot::after { animation: none; opacity: 0; }
 
 /* ── Reproductor de audio ── */
 .tele-player-ui[hidden],
@@ -723,51 +679,6 @@ input:focus, textarea:focus {
   color: #92400E;
   font-weight: 600;
 }
-
-/* ── Pasos con conector visual ── */
-.tele-step {
-  position: relative;
-  display: flex;
-  gap: 1.25rem;
-}
-
-.tele-step-num {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 1rem;
-  background: #0E7490;
-  color: #fff;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.15rem;
-  font-weight: 800;
-  box-shadow: var(--shadow-blue);
-}
-
-.tele-step:not(:last-child)::before {
-  content: '';
-  position: absolute;
-  top: 3rem;
-  bottom: -1.5rem;
-  left: 1.5rem;
-  width: 2px;
-  margin-left: -1px;
-  background: linear-gradient(#0E7490, rgba(13,148,136,.45));
-}
-
-/* ── CTA WhatsApp (texto oscuro sobre verde: contraste AA ≈ 9:1) ── */
-.tele-cta {
-  background: #1FA855;
-  color: #0F172A;
-  box-shadow: var(--shadow-wa);
-}
-
-.tele-cta:hover { background: #2EE372; }
 
 /* ── <details>: transcripción y FAQ ── */
 .tele-details summary {
