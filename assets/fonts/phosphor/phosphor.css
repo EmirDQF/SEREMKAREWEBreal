@@ -32,6 +32,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 .ph.ph-arrow-right:before { content: "\e06c"; }
+.ph.ph-arrow-up-right:before { content: "\e092"; }
 .ph.ph-arrows-left-right:before { content: "\e0a0"; }
 .ph.ph-bone:before { content: "\e7f2"; }
 .ph.ph-calendar-check:before { content: "\e712"; }
@@ -42,9 +43,10 @@
 .ph.ph-clock:before { content: "\e19a"; }
 .ph.ph-cpu:before { content: "\e610"; }
 .ph.ph-cube:before { content: "\e1da"; }
-.ph.ph-envelope:before { content: "\e214"; }
+.ph.ph-envelope-simple:before { content: "\e218"; }
 .ph.ph-eye:before { content: "\e220"; }
 .ph.ph-facebook-logo:before { content: "\e226"; }
+.ph.ph-first-aid:before { content: "\e56e"; }
 .ph.ph-first-aid-kit:before { content: "\e570"; }
 .ph.ph-google-logo:before { content: "\e292"; }
 .ph.ph-graduation-cap:before { content: "\e62c"; }
@@ -68,7 +70,6 @@
 .ph.ph-shield-check:before { content: "\e40c"; }
 .ph.ph-speaker-high:before { content: "\e44a"; }
 .ph.ph-speaker-slash:before { content: "\e45a"; }
-.ph.ph-spinner:before { content: "\e66a"; }
 .ph.ph-stethoscope:before { content: "\e7ea"; }
 .ph.ph-syringe:before { content: "\e968"; }
 .ph.ph-target:before { content: "\e47c"; }
@@ -113,6 +114,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 .ph-bold.ph-arrow-right:before { content: "\e06c"; }
+.ph-bold.ph-arrow-up-right:before { content: "\e092"; }
 .ph-bold.ph-arrows-left-right:before { content: "\e0a0"; }
 .ph-bold.ph-bone:before { content: "\e7f2"; }
 .ph-bold.ph-calendar-check:before { content: "\e712"; }
@@ -123,9 +125,10 @@
 .ph-bold.ph-clock:before { content: "\e19a"; }
 .ph-bold.ph-cpu:before { content: "\e610"; }
 .ph-bold.ph-cube:before { content: "\e1da"; }
-.ph-bold.ph-envelope:before { content: "\e214"; }
+.ph-bold.ph-envelope-simple:before { content: "\e218"; }
 .ph-bold.ph-eye:before { content: "\e220"; }
 .ph-bold.ph-facebook-logo:before { content: "\e226"; }
+.ph-bold.ph-first-aid:before { content: "\e56e"; }
 .ph-bold.ph-first-aid-kit:before { content: "\e570"; }
 .ph-bold.ph-google-logo:before { content: "\e292"; }
 .ph-bold.ph-graduation-cap:before { content: "\e62c"; }
@@ -149,7 +152,6 @@
 .ph-bold.ph-shield-check:before { content: "\e40c"; }
 .ph-bold.ph-speaker-high:before { content: "\e44a"; }
 .ph-bold.ph-speaker-slash:before { content: "\e45a"; }
-.ph-bold.ph-spinner:before { content: "\e66a"; }
 .ph-bold.ph-stethoscope:before { content: "\e7ea"; }
 .ph-bold.ph-syringe:before { content: "\e968"; }
 .ph-bold.ph-target:before { content: "\e47c"; }
@@ -194,6 +196,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 .ph-fill.ph-arrow-right:before { content: "\e06c"; }
+.ph-fill.ph-arrow-up-right:before { content: "\e092"; }
 .ph-fill.ph-arrows-left-right:before { content: "\e0a0"; }
 .ph-fill.ph-bone:before { content: "\e7f2"; }
 .ph-fill.ph-calendar-check:before { content: "\e712"; }
@@ -204,9 +207,10 @@
 .ph-fill.ph-clock:before { content: "\e19a"; }
 .ph-fill.ph-cpu:before { content: "\e610"; }
 .ph-fill.ph-cube:before { content: "\e1da"; }
-.ph-fill.ph-envelope:before { content: "\e214"; }
+.ph-fill.ph-envelope-simple:before { content: "\e218"; }
 .ph-fill.ph-eye:before { content: "\e220"; }
 .ph-fill.ph-facebook-logo:before { content: "\e226"; }
+.ph-fill.ph-first-aid:before { content: "\e56e"; }
 .ph-fill.ph-first-aid-kit:before { content: "\e570"; }
 .ph-fill.ph-google-logo:before { content: "\e292"; }
 .ph-fill.ph-graduation-cap:before { content: "\e62c"; }
@@ -230,7 +234,6 @@
 .ph-fill.ph-shield-check:before { content: "\e40c"; }
 .ph-fill.ph-speaker-high:before { content: "\e44a"; }
 .ph-fill.ph-speaker-slash:before { content: "\e45a"; }
-.ph-fill.ph-spinner:before { content: "\e66a"; }
 .ph-fill.ph-stethoscope:before { content: "\e7ea"; }
 .ph-fill.ph-syringe:before { content: "\e968"; }
 .ph-fill.ph-target:before { content: "\e47c"; }

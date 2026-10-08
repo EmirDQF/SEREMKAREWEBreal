@@ -306,3 +306,70 @@
 
 /* ═══ EQUIPO DE APOYO ═════════════════════════════════════════ */
 .staff-photo { background: linear-gradient(135deg, rgb(var(--c-petrol) / .15), rgb(var(--c-navy) / .1)); }
+
+/* ═══ CONTACTO ═════════════════════════════════════════════════ */
+.contact-row { display: flex; gap: 1rem; align-items: flex-start; }
+.contact-row > i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-ctl);
+  background: rgb(255 255 255 / .1);
+  color: #FCD34D;
+  font-size: 1.4rem;
+}
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .375rem;
+  min-height: 2.75rem;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgb(255 255 255 / .35);
+  text-underline-offset: 4px;
+  transition: text-decoration-color var(--dur-ui) var(--ease-lux);
+}
+.contact-link:hover { text-decoration-color: #FCD34D; }
+.contact-link[hidden] { display: none; }
+
+.contact-urgent {
+  display: flex;
+  gap: .75rem;
+  padding: 1rem;
+  border-radius: var(--radius-ctl);
+  background: rgb(0 0 0 / .2);
+  border: 1px solid rgb(255 255 255 / .15);
+  color: #E2E8F0;
+  font-size: .9375rem;
+}
+.contact-urgent i { color: #FCA5A5; font-size: 1.25rem; flex-shrink: 0; }
+
+/* ═══ CAMPOS DE FORMULARIO (contacto y agenda) ═══════════════ */
+.field-label { display: block; margin-bottom: .5rem; color: #1E293B; font-size: .9375rem; font-weight: 700; }
+.field {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: .75rem 1rem;
+  border-radius: var(--radius-ctl);
+  border: 1.5px solid #CBD5E1;
+  background: #fff;
+  color: rgb(var(--c-navy));
+  font-size: 1.0625rem;
+  outline: none;
+}
+.field:focus { border-color: rgb(var(--c-cyan)); box-shadow: 0 0 0 4px rgb(var(--c-cyan) / .15); transform: none; }
+.field[aria-invalid="true"] { border-color: #DC2626; box-shadow: 0 0 0 4px rgb(220 38 38 / .1); }
+.field-hint { margin-top: .375rem; color: #64748B; font-size: .875rem; }
+.field-error {
+  display: flex;
+  gap: .375rem;
+  margin-top: .375rem;
+  color: #B91C1C;
+  font-size: .9rem;
+  font-weight: 600;
+}
+.field-error[hidden] { display: none; }

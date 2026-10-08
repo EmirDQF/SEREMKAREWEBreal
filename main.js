@@ -65,50 +65,55 @@ const initNavbar = () => {
   update();
 };
 
-// ── Contact Form ───────────────────────────────────────────────────────────────
+// ── Validación de formularios (también la usa booking.js) ─────────────────────
+const PE_MOBILE_RE = /^9\d{8}$/;
+
+/** Marca un campo como válido/ inválido y muestra su mensaje (#<id>-error) */
+const setFieldError = (input, invalid) => {
+  const error = document.getElementById(`${input.id}-error`);
+  input.setAttribute('aria-invalid', String(invalid));
+  if (error) error.hidden = !invalid;
+};
+
+/** Valida los campos requeridos; enfoca el primero con error. @returns {boolean} */
+const validateFields = fields => {
+  const invalid = fields.filter(field => {
+    const bad = !field.checkValidity();
+    setFieldError(field, bad);
+    return bad;
+  });
+  invalid[0]?.focus();
+  return invalid.length === 0;
+};
+
+/** Celular Perú: solo dígitos, sin el prefijo 51 si lo pegan con código de país, máximo 9 */
+const sanitizePhone = value => {
+  const digits = value.replace(/\D/g, '');
+  const local = digits.length > 9 && digits.startsWith('51') ? digits.slice(2) : digits;
+  return local.slice(0, 9);
+};
+
+// ── Formulario de contacto → WhatsApp (no envía datos a ningún servidor) ──────
 const initForm = () => {
   const form = $('#contactForm');
   if (!form) return;
-
-  const setFieldState = (input, invalid) => {
-    input.classList.toggle('border-red-500', invalid);
-    input.classList.toggle('ring-red-500',   invalid);
-    input.classList.toggle('border-gray-300', !invalid);
-    const err = input.nextElementSibling;
-    err?.classList.toggle('hidden', !invalid);
-    if (invalid) {
-      input.classList.add('animate-pulse');
-      setTimeout(() => input.classList.remove('animate-pulse'), 500);
-    }
-  };
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const inputs  = $$('input[required], textarea[required]', form);
-    const isValid = inputs.reduce((acc, input) => {
-      const ok = input.checkValidity();
-      setFieldState(input, !ok);
-      return acc && ok;
-    }, true);
-
-    if (!isValid) return;
-
-    const btn      = $('button[type="submit"]', form);
-    const original = btn.innerHTML;
-    btn.innerHTML  = '<i class="ph-bold ph-spinner animate-spin text-xl"></i> Enviando...';
-    btn.classList.add('opacity-80', 'cursor-not-allowed');
-
-    setTimeout(() => {
-      alert('¡Validación exitosa! En un entorno real, este mensaje se enviaría de forma segura al servidor.');
-      form.reset();
-      btn.innerHTML = original;
-      btn.classList.remove('opacity-80', 'cursor-not-allowed');
-    }, 1000);
-  });
+  const fields = $$('input[required], textarea[required]', form);
 
   form.addEventListener('input', ({ target }) => {
-    if (!target.matches('input, textarea') || !target.checkValidity()) return;
-    setFieldState(target, false);
+    if (target.name === 'telefono') target.value = sanitizePhone(target.value);
+    if (target.getAttribute('aria-invalid') === 'true' && target.checkValidity()) setFieldError(target, false);
+  });
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!validateFields(fields)) return;
+    const data = new FormData(form);
+    const text = [
+      `Hola, soy ${data.get('nombre').trim()}.`,
+      data.get('mensaje').trim(),
+      `Mi celular: ${data.get('telefono')}`,
+    ].join('\n');
+    window.open(waLink(text), '_blank', 'noopener');
   });
 };
 
@@ -339,6 +344,19 @@ const applySiteLinks = () => {
   const tel = telLink();
   // Sin teléfono real los enlaces "Llamar" mantienen su respaldo (#contacto)
   if (tel) $$('[data-tel]').forEach(link => { link.href = tel; });
+
+  if (!isPending(SITE.email)) $$('[data-mail]').forEach(link => { link.href = `mailto:${SITE.email}`; });
+
+  // "Cómo llegar" solo aparece con un enlace real de Google Maps
+  const { mapa } = SITE.direccion;
+  if (mapa) {
+    $$('[data-map-link]').forEach(link => {
+      link.href = mapa;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.hidden = false;
+    });
+  }
 };
 
 /** Formación del doctor: la lista solo aparece cuando SITE.doctor.formacion tiene datos */
