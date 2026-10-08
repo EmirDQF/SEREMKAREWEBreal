@@ -414,9 +414,8 @@
 
                     <!-- CTAs principales -->
                     <div class="flex flex-col sm:flex-row sm:flex-wrap gap-5">
-                        <a href="https://wa.me/51987654321?text=Hola,%20deseo%20agendar%20una%20consulta%20reumatologica."
-                           target="_blank"
-                           rel="noopener noreferrer"
+                        <a href="#agendar"
+                           data-book
                            class="btn-shine flex items-center justify-center gap-3 bg-brand-accent text-white px-8 py-4 md:py-4.5 rounded-xl text-lg font-bold transition-all shadow-[0_15px_30px_rgba(13,148,136,0.3)] hover:-translate-y-1 hover:bg-green-500 focus:ring-4 focus:ring-brand-accent/50 w-full sm:w-auto">
                             Agendar cita ahora
                             <i class="ph-bold ph-arrow-right text-xl" aria-hidden="true"></i>
@@ -1399,6 +1398,128 @@
         </section>
 
         <!-- ─────────────────────────────────────────────────────
+             AGENDA TU CITA — #agendar
+             Un solo formulario (#booking-form). Los botones [data-book] lo abren en el <dialog>
+             #booking-dialog; al cerrar vuelve aquí. Lógica: booking.js → envío aislado en submitBooking().
+        ─────────────────────────────────────────────────────── -->
+        <section id="agendar" class="py-20 md:py-28 bg-white relative overflow-hidden" aria-labelledby="agendar-title">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-[minmax(0,4fr)_minmax(0,7fr)] gap-10 lg:gap-14 items-start">
+
+                    <div class="reveal-left lg:sticky lg:top-28">
+                        <span class="eyebrow mb-5"><i class="ph-fill ph-calendar-check" aria-hidden="true"></i> Agenda en línea</span>
+                        <h2 id="agendar-title" class="font-heading text-3xl md:text-5xl font-bold text-navy leading-tight">Agenda tu cita en 1 minuto</h2>
+                        <p class="text-slate-600 text-lg leading-relaxed mt-5">Elige el tipo de cita, el día y la hora. Te confirmamos por WhatsApp.</p>
+                        <ul class="check-list mt-8" role="list">
+                            <li><i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i> Confirmación por WhatsApp con el equipo del Dr. Collcca.</li>
+                            <li><i class="ph-fill ph-credit-card" aria-hidden="true"></i> No pagas nada aquí: te indicamos el monto y cómo pagar al confirmar.</li>
+                            <li><i class="ph-fill ph-lock-simple" aria-hidden="true"></i> Tus datos no se envían a ningún servidor desde esta página.</li>
+                            <li><i class="ph-fill ph-calendar-plus" aria-hidden="true"></i> Añade la cita a tu calendario con un toque.</li>
+                        </ul>
+                    </div>
+
+                    <div class="booking-home reveal-right" data-booking-home>
+                        <noscript>
+                            <div class="glass-card p-6">
+                                <p class="font-bold text-navy text-lg">Para agendar, escríbenos por WhatsApp</p>
+                                <p class="text-slate-600 mt-2">Horario de atención: lunes a sábado, 7:00 pm – 9:00 pm.</p>
+                                <a href="https://wa.me/?text=Hola%2C%20vengo%20de%20la%20p%C3%A1gina%20web%20de%20SERMEKARE%20y%20deseo%20agendar%20una%20cita." class="btn btn--wa btn--lg mt-4" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                            </div>
+                        </noscript>
+
+                        <form id="booking-form" class="booking-card" novalidate aria-label="Agendar una cita" hidden>
+                            <p class="sr-only" aria-live="polite" data-booking-live></p>
+
+                            <!-- 1. Tipo -->
+                            <fieldset class="booking-step">
+                                <legend class="booking-legend"><span class="booking-num" aria-hidden="true">1</span> ¿Qué tipo de cita necesitas?</legend>
+                                <div class="booking-types" data-booking-types></div>
+                                <p id="booking-tipo-error" class="field-error" hidden>Elige el tipo de cita.</p>
+                            </fieldset>
+
+                            <!-- 2. Día -->
+                            <fieldset class="booking-step">
+                                <legend class="booking-legend"><span class="booking-num" aria-hidden="true">2</span> Elige el día</legend>
+                                <div class="booking-days" data-booking-days></div>
+                                <p id="booking-fecha-error" class="field-error" hidden>Elige un día disponible.</p>
+                            </fieldset>
+
+                            <!-- 3. Hora -->
+                            <fieldset class="booking-step">
+                                <legend class="booking-legend"><span class="booking-num" aria-hidden="true">3</span> Elige la hora <span class="booking-legend-note">hora de Lima</span></legend>
+                                <div class="booking-slots" data-booking-slots>
+                                    <p class="booking-empty">Primero elige un día.</p>
+                                </div>
+                                <p id="booking-hora-error" class="field-error" hidden>Elige una hora.</p>
+                            </fieldset>
+
+                            <!-- 4. Datos -->
+                            <fieldset class="booking-step">
+                                <legend class="booking-legend"><span class="booking-num" aria-hidden="true">4</span> Tus datos</legend>
+                                <div class="grid sm:grid-cols-2 gap-5">
+                                    <div>
+                                        <label for="booking-nombre" class="field-label">Nombre y apellido <span aria-hidden="true">*</span></label>
+                                        <input id="booking-nombre" name="nombre" type="text" class="field" required minlength="3" maxlength="80" autocomplete="name" aria-describedby="booking-nombre-error">
+                                        <p id="booking-nombre-error" class="field-error" hidden>Escribe tu nombre y apellido.</p>
+                                    </div>
+                                    <div>
+                                        <label for="booking-celular" class="field-label">Celular (WhatsApp) <span aria-hidden="true">*</span></label>
+                                        <input id="booking-celular" name="celular" type="tel" class="field" required inputmode="numeric" pattern="9[0-9]{8}" autocomplete="tel-national" placeholder="912345678" aria-describedby="booking-celular-hint booking-celular-error">
+                                        <p id="booking-celular-hint" class="field-hint">9 dígitos, empieza con 9.</p>
+                                        <p id="booking-celular-error" class="field-error" hidden>Escribe un celular de 9 dígitos que empiece con 9.</p>
+                                    </div>
+                                </div>
+                                <div class="mt-5">
+                                    <label for="booking-motivo" class="field-label">Motivo de la consulta <span class="font-normal text-slate-500">(opcional)</span></label>
+                                    <textarea id="booking-motivo" name="motivo" rows="2" maxlength="300" class="field resize-none" placeholder="Ej.: dolor de rodilla desde hace 3 meses"></textarea>
+                                </div>
+
+                                <!-- Anti-spam: los humanos no ven este campo -->
+                                <div class="booking-hp" aria-hidden="true">
+                                    <label for="booking-empresa">Empresa</label>
+                                    <input id="booking-empresa" name="empresa" type="text" tabindex="-1" autocomplete="off">
+                                </div>
+
+                                <label class="booking-check mt-5">
+                                    <input type="checkbox" name="consentimiento" id="booking-consentimiento" required aria-describedby="booking-consentimiento-error">
+                                    <span>Acepto que SERMEKARE use mis datos solo para gestionar esta cita, conforme a la Ley N.º 29733 de Protección de Datos Personales.</span>
+                                </label>
+                                <p id="booking-consentimiento-error" class="field-error" hidden>Necesitamos tu autorización para gestionar la cita.</p>
+
+                                <label class="booking-check mt-3">
+                                    <input type="checkbox" name="recordar" id="booking-recordar">
+                                    <span>Recordar mi nombre y celular en este dispositivo.</span>
+                                </label>
+                            </fieldset>
+
+                            <div class="booking-summary" data-booking-summary hidden></div>
+
+                            <button type="submit" class="btn btn--wa btn--lg btn--block">
+                                <i class="ph-fill ph-whatsapp-logo text-2xl" aria-hidden="true"></i> Confirmar por WhatsApp
+                            </button>
+                            <p class="text-center text-sm text-slate-500 mt-3">Se abrirá WhatsApp con tu mensaje listo. La cita queda confirmada cuando te respondamos.</p>
+                        </form>
+
+                        <!-- Confirmación (se muestra después de enviar) -->
+                        <div class="booking-card booking-done" data-booking-done hidden tabindex="-1" aria-labelledby="booking-done-title">
+                            <div class="booking-done-icon" aria-hidden="true"><i class="ph-fill ph-check-circle"></i></div>
+                            <h3 id="booking-done-title" class="font-heading font-bold text-2xl text-navy text-center">¡Listo! Envía el mensaje en WhatsApp</h3>
+                            <p class="text-slate-600 text-center mt-2">Tu cita queda <strong>por confirmar</strong> hasta que te respondamos.</p>
+                            <dl class="booking-done-list" data-booking-done-list></dl>
+                            <div class="grid sm:grid-cols-2 gap-3 mt-6">
+                                <a href="#agendar" class="btn btn--wa" data-booking-wa target="_blank" rel="noopener noreferrer"><i class="ph-fill ph-whatsapp-logo text-xl" aria-hidden="true"></i> Abrir WhatsApp</a>
+                                <button type="button" class="btn btn--primary" data-booking-ics><i class="ph-fill ph-calendar-plus text-xl" aria-hidden="true"></i> Añadir al calendario</button>
+                                <button type="button" class="btn btn--outline" data-booking-copy><i class="ph-bold ph-copy text-xl" aria-hidden="true"></i> Copiar detalles</button>
+                                <button type="button" class="btn btn--outline" data-booking-reset><i class="ph-bold ph-arrow-counter-clockwise text-xl" aria-hidden="true"></i> Agendar otra cita</button>
+                            </div>
+                            <p class="text-center text-sm text-slate-500 mt-4" aria-live="polite" data-booking-copy-status></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────────────────────────
              EQUIPO DE APOYO — #staff
              Ninguna persona de apoyo se presenta como médico: el único médico es el Dr. Collcca.
              Nombres y fotos reales: PENDIENTES (ver lista de pendientes en README).
@@ -1785,6 +1906,15 @@
         </span>
     </a>
 
+    <!-- Diálogo de la agenda: booking.js mueve aquí #booking-form al abrirlo desde cualquier [data-book] -->
+    <dialog id="booking-dialog" class="booking-dialog" aria-labelledby="booking-dialog-title">
+        <div class="booking-dialog-head">
+            <h2 id="booking-dialog-title" class="font-heading font-bold text-xl text-navy">Agenda tu cita</h2>
+            <button type="button" class="booking-close" data-booking-close aria-label="Cerrar la agenda"><i class="ph-bold ph-x" aria-hidden="true"></i></button>
+        </div>
+        <div class="booking-dialog-body" data-booking-slot></div>
+    </dialog>
+
     <nav class="mobile-bar" aria-label="Accesos rápidos">
         <a href="#contacto" class="mb-call" data-tel><i class="ph-fill ph-phone" aria-hidden="true"></i> Llamar</a>
         <a href="https://wa.me/?text=Hola%2C%20vengo%20de%20la%20p%C3%A1gina%20web%20de%20SERMEKARE%20y%20deseo%20agendar%20una%20cita." class="mb-wa" data-wa="general" target="_blank" rel="noopener noreferrer"><i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i> WhatsApp</a>
@@ -1793,6 +1923,7 @@
 
     <script src="site-config.js" defer></script>
     <script src="tele.js" defer></script>
+    <script src="booking.js" defer></script>
     <script src="main.js" defer></script>
     <script src="anatomia.js" defer></script>
 </body>

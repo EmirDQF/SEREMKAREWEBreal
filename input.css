@@ -10,6 +10,7 @@
 @import "tailwindcss/components";
 @import "./styles/ui.css";
 @import "./styles/tele.css";
+@import "./styles/booking.css";
 @import "tailwindcss/utilities";
 
 @import "./assets/fonts/phosphor/phosphor.css";

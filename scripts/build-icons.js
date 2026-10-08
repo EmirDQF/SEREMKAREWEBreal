@@ -9,7 +9,7 @@ const path = require('path');
 const subsetFont = require('subset-font');
 
 const ROOT = path.resolve(__dirname, '..');
-const SOURCES = ['index.html', 'main.js', 'anatomia.js', 'tele.js', 'booking.js'];
+const SOURCES = ['index.html', 'main.js', 'anatomia.js', 'tele.js', 'booking.js', 'site-config.js'];
 const PKG = path.join(ROOT, 'node_modules', '@phosphor-icons', 'web', 'src');
 const OUT_DIR = path.join(ROOT, 'assets', 'fonts', 'phosphor');
 // Ruta de las fuentes vista desde dist/output.css (postcss-import no reescribe url())
