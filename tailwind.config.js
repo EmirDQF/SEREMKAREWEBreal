@@ -1,7 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-// Misma configuración que tenía el <script> inline del CDN (Tailwind 3.4.17).
+// Tokens «Clinical Luxury»: los valores viven como variables CSS (canales RGB) en style.css → :root.
+// Los alias brand.* mantienen funcionando las clases existentes con la paleta nueva.
+const token = name => `rgb(var(--c-${name}) / <alpha-value>)`;
+
 module.exports = {
-  content: ['./index.html', './main.js', './anatomia.js'],
+  content: ['./index.html', './main.js', './anatomia.js', './site-config.js', './tele.js', './booking.js', './src/**/*.js'],
   // Clases que se agregan/quitan desde JS o con valores arbitrarios críticos
   safelist: [
     'hidden', 'active',
@@ -11,28 +14,41 @@ module.exports = {
     'scale-125', 'shadow-md',
     'border-red-500', 'ring-red-500', 'border-gray-300',
     'animate-pulse', 'animate-spin', 'cursor-not-allowed', 'text-xl',
-    'rounded-[3rem]', 'rounded-[2.5rem]', 'rounded-[2rem]',
     '[overflow-wrap:anywhere]', 'lg:grid-rows-[auto_1fr]', 'bg-brand-light/50',
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        heading: ['Poppins', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
+        navy: token('navy'),
+        petrol: token('petrol'),
+        cyan: token('cyan'),
+        teal: token('teal'),
+        gold: { DEFAULT: token('gold'), light: token('gold-light') },
+        surface: token('surface'),
+        whatsapp: token('whatsapp'),
         brand: {
-          dark: '#08172E',
-          blue: '#163C75',
-          light: '#F8FAFC',
-          whatsapp: '#25D366',
-          accent: '#10B981',
+          dark: token('navy'),
+          blue: token('petrol'),
+          light: token('surface'),
+          whatsapp: token('whatsapp'),
+          accent: token('accent'),
         },
       },
+      borderRadius: {
+        card: '1.25rem',
+        ctl: '0.75rem',
+      },
       boxShadow: {
-        soft: '0 10px 40px -10px rgba(8, 23, 46, 0.05)',
-        hover: '0 25px 50px -12px rgba(22, 60, 117, 0.15)',
-        premium: '0 30px 60px -15px rgba(8, 23, 46, 0.1)',
+        soft: '0 10px 40px -10px rgba(15, 23, 42, 0.06)',
+        hover: '0 25px 50px -12px rgba(14, 116, 144, 0.18)',
+        premium: '0 30px 60px -15px rgba(15, 23, 42, 0.12)',
+      },
+      transitionTimingFunction: {
+        lux: 'cubic-bezier(.22, 1, .36, 1)',
       },
     },
   },

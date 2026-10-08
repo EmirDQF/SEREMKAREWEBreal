@@ -5,40 +5,69 @@
 
 /* ── Variables del Sistema ── */
 :root {
+  /* Paleta «Clinical Luxury» en canales RGB (tailwind.config.js las lee con <alpha-value>) */
+  --c-navy:       15 23 42;    /* #0F172A autoridad: hero, teleconsulta, footer */
+  --c-petrol:     14 116 144;  /* #0E7490 acento principal, enlaces, iconos */
+  --c-cyan:       2 132 199;   /* #0284C7 acciones secundarias, focos */
+  --c-teal:       13 148 136;  /* #0D9488 estados de salud / éxito */
+  --c-accent:     15 118 110;  /* #0F766E teal profundo: texto de acento con contraste AA sobre blanco */
+  --c-gold:       217 119 6;   /* #D97706 sellos, badges y horario estrella */
+  --c-gold-light: 245 158 11;  /* #F59E0B dorado sobre fondos oscuros */
+  --c-surface:    248 250 252; /* #F8FAFC fondo general */
+  --c-whatsapp:   31 168 85;   /* #1FA855 solo WhatsApp (texto navy encima: contraste 5.8:1) */
+
+  --ease-lux:       cubic-bezier(.22, 1, .36, 1);
+  --dur-ui:         200ms;
+  --dur-enter:      600ms;
+  --radius-card:    1.25rem;
+  --radius-ctl:     .75rem;
+
   --ease-organic:   cubic-bezier(.4, 0, .2, 1);
   --ease-spring:    cubic-bezier(.34, 1.56, .64, 1);
   --ease-out-expo:  cubic-bezier(.19, 1, .22, 1);
   --ease-in-back:   cubic-bezier(.36, 0, .66, -.56);
 
-  --shadow-sm:      0 1px 3px rgba(8,23,46,.06), 0 1px 2px rgba(8,23,46,.04);
-  --shadow-md:      0 4px 16px rgba(8,23,46,.08), 0 2px 6px rgba(8,23,46,.05);
-  --shadow-lg:      0 12px 40px rgba(8,23,46,.12), 0 4px 16px rgba(8,23,46,.07);
-  --shadow-xl:      0 24px 64px rgba(8,23,46,.15), 0 8px 24px rgba(8,23,46,.09);
-  --shadow-2xl:     0 40px 96px rgba(8,23,46,.18), 0 16px 40px rgba(8,23,46,.10);
+  --shadow-sm:      0 1px 3px rgba(15,23,42,.06), 0 1px 2px rgba(15,23,42,.04);
+  --shadow-md:      0 4px 16px rgba(15,23,42,.08), 0 2px 6px rgba(15,23,42,.05);
+  --shadow-lg:      0 12px 40px rgba(15,23,42,.12), 0 4px 16px rgba(15,23,42,.07);
+  --shadow-xl:      0 24px 64px rgba(15,23,42,.15), 0 8px 24px rgba(15,23,42,.09);
+  --shadow-2xl:     0 40px 96px rgba(15,23,42,.18), 0 16px 40px rgba(15,23,42,.10);
 
-  --shadow-blue:    0 16px 48px rgba(22,60,117,.25), 0 4px 16px rgba(22,60,117,.15);
-  --shadow-green:   0 16px 48px rgba(16,185,129,.30), 0 4px 16px rgba(16,185,129,.18);
-  --shadow-wa:      0 16px 48px rgba(37,211,102,.35), 0 4px 16px rgba(37,211,102,.20);
+  --shadow-blue:    0 16px 48px rgba(14,116,144,.25), 0 4px 16px rgba(14,116,144,.15);
+  --shadow-green:   0 16px 48px rgba(13,148,136,.30), 0 4px 16px rgba(13,148,136,.18);
+  --shadow-wa:      0 16px 48px rgba(31,168,85,.35), 0 4px 16px rgba(31,168,85,.20);
 
   --glass-bg:       rgba(255, 255, 255, 0.65);
   --glass-border:   rgba(255, 255, 255, 0.45);
   --glass-blur:     blur(20px) saturate(180%);
 
-  --glass-dark-bg:  rgba(8, 23, 46, 0.55);
+  --glass-dark-bg:  rgba(15,23,42, 0.55);
   --glass-dark-border: rgba(255,255,255,.10);
   --glass-dark-blur: blur(24px) saturate(160%);
 
-  --gradient-brand: linear-gradient(135deg, #08172E 0%, #163C75 60%, #1a4a8f 100%);
-  --gradient-accent: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  --gradient-brand: linear-gradient(135deg, #0F172A 0%, #0E7490 60%, #155E75 100%);
+  --gradient-accent: linear-gradient(135deg, #0D9488 0%, #0F766E 100%);
   --gradient-shimmer: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.18) 50%, transparent 70%);
 }
 
 /* ── Optimización Tipográfica ── */
 body {
+  font-size: 1.0625rem; /* 17 px: legible para adultos mayores */
+  line-height: 1.7;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+h1, h2, h3, .font-heading {
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p { text-wrap: pretty; }
+
+/* El header fijo no tapa el título al navegar con anclas */
+section[id], [id^="faq-"], [id^="servicio-"] { scroll-margin-top: 6rem; }
 
 /* ════════════════════════════════════════════════════════════════
    KEYFRAMES — Sistema de Animaciones
@@ -76,8 +105,8 @@ body {
 }
 
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,.30); }
-  50%       { box-shadow: 0 0 0 12px rgba(16,185,129,0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(13,148,136,.30); }
+  50%       { box-shadow: 0 0 0 12px rgba(13,148,136,0); }
 }
 
 @keyframes floatY {
@@ -86,8 +115,8 @@ body {
 }
 
 @keyframes borderGlow {
-  0%, 100% { border-color: rgba(22,60,117,.20); }
-  50%       { border-color: rgba(16,185,129,.50); }
+  0%, 100% { border-color: rgba(14,116,144,.20); }
+  50%       { border-color: rgba(13,148,136,.50); }
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -168,7 +197,7 @@ body {
 .card-ui:hover {
   transform: translateY(-10px) scale(1.012) rotateX(1.5deg);
   box-shadow: var(--shadow-xl);
-  border-color: rgba(16,185,129,.35);
+  border-color: rgba(13,148,136,.35);
   background: rgba(255, 255, 255, 0.82);
 }
 
@@ -248,7 +277,7 @@ body {
 
 /* WhatsApp button específico */
 .btn-shine[href*="wa.me"]:hover,
-.btn-shine.bg-\[#25D366\]:hover {
+.btn-shine.bg-\[#1FA855\]:hover {
   box-shadow: var(--shadow-wa);
 }
 
@@ -261,9 +290,9 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 2.5px solid #10B981;
+  outline: 2.5px solid #0284C7;
   outline-offset: 3px;
-  box-shadow: 0 0 0 5px rgba(16,185,129,.18);
+  box-shadow: 0 0 0 5px rgba(2,132,199,.18);
   border-radius: 4px;
   transition: box-shadow .2s var(--ease-organic);
 }
@@ -307,9 +336,9 @@ select:focus-visible {
 }
 
 /* Sombra texto premium */
-.text-shadow-sm  { text-shadow: 0 1px 3px rgba(8,23,46,.15); }
-.text-shadow-md  { text-shadow: 0 2px 8px rgba(8,23,46,.22); }
-.text-shadow-lg  { text-shadow: 0 4px 16px rgba(8,23,46,.30); }
+.text-shadow-sm  { text-shadow: 0 1px 3px rgba(15,23,42,.15); }
+.text-shadow-md  { text-shadow: 0 2px 8px rgba(15,23,42,.22); }
+.text-shadow-lg  { text-shadow: 0 4px 16px rgba(15,23,42,.30); }
 
 /* Gradiente de borde animado */
 .border-gradient {
@@ -321,7 +350,7 @@ select:focus-visible {
   position: absolute;
   inset: -1.5px;
   border-radius: inherit;
-  background: linear-gradient(135deg, #10B981, #163C75, #10B981);
+  background: linear-gradient(135deg, #0D9488, #0E7490, #0D9488);
   background-size: 200% 200%;
   animation: gradientDrift 4s ease infinite;
   z-index: -1;
@@ -347,7 +376,7 @@ a[aria-label*="WhatsApp"] {
 a[aria-label*="WhatsApp"]:hover {
   transform: translateY(-4px) scale(1.08) !important;
   filter: brightness(1.08) saturate(1.15);
-  box-shadow: 0 24px 56px rgba(37,211,102,.45), 0 8px 24px rgba(37,211,102,.25) !important;
+  box-shadow: 0 24px 56px rgba(31,168,85,.45), 0 8px 24px rgba(31,168,85,.25) !important;
 }
 
 /* Social links footer */
@@ -374,12 +403,12 @@ input, textarea, select {
 
 input:focus, textarea:focus {
   transform: translateY(-1px);
-  box-shadow: 0 0 0 4px rgba(22,60,117,.12), var(--shadow-md);
+  box-shadow: 0 0 0 4px rgba(14,116,144,.12), var(--shadow-md);
 }
 
 /* Gradiente animado para fondos de sección */
 .bg-gradient-animated {
-  background: linear-gradient(-45deg, #08172E, #163C75, #0f2d5c, #1a4a8f);
+  background: linear-gradient(-45deg, #0F172A, #0E7490, #164E63, #155E75);
   background-size: 400% 400%;
   animation: gradientDrift 8s ease infinite;
 }
@@ -416,7 +445,7 @@ input:focus, textarea:focus {
   width: 34rem;
   height: 34rem;
   border-radius: 9999px;
-  background: rgba(16,185,129,.16);
+  background: rgba(13,148,136,.16);
   filter: blur(90px);
   pointer-events: none;
 }
@@ -426,7 +455,7 @@ input:focus, textarea:focus {
   right: auto;
   bottom: 10rem;
   left: -14rem;
-  background: rgba(22,60,117,.08);
+  background: rgba(14,116,144,.08);
 }
 
 /* ── Badge "Nuevo" del menú ── */
@@ -455,7 +484,7 @@ input:focus, textarea:focus {
   background: #fff;
   border: 1px solid #E2E8F0;
   box-shadow: var(--shadow-sm);
-  color: #08172E;
+  color: #0F172A;
   font-size: .9rem;
   font-weight: 600;
 }
@@ -467,7 +496,7 @@ input:focus, textarea:focus {
 }
 
 .tele-photo-placeholder span {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: clamp(4.5rem, 20vw, 8rem);
   font-weight: 800;
   letter-spacing: .06em;
@@ -484,7 +513,7 @@ input:focus, textarea:focus {
   width: .625rem;
   height: .625rem;
   border-radius: 9999px;
-  background: #10B981;
+  background: #0D9488;
 }
 
 .tele-dot::after {
@@ -524,7 +553,7 @@ input:focus, textarea:focus {
   width: 3.75rem;
   height: 3.75rem;
   border-radius: 9999px;
-  background: #163C75;
+  background: #0E7490;
   color: #fff;
   box-shadow: var(--shadow-blue);
   transition:
@@ -532,7 +561,7 @@ input:focus, textarea:focus {
     background .3s  var(--ease-organic);
 }
 
-.tele-play:hover  { transform: scale(1.07); background: #08172E; }
+.tele-play:hover  { transform: scale(1.07); background: #0F172A; }
 .tele-play:active { transform: scale(.94); transition-duration: .12s; }
 .tele-play:focus-visible { border-radius: 9999px; }
 
@@ -568,7 +597,7 @@ input:focus, textarea:focus {
   max-width: 5px;
   height: 45%;
   border-radius: 9999px;
-  background: rgba(22,60,117,.22);
+  background: rgba(14,116,144,.22);
   transform-origin: center;
   transition: background .3s var(--ease-organic);
 }
@@ -579,7 +608,7 @@ input:focus, textarea:focus {
 .tele-wave span:nth-child(5n)   { height: 85%;  animation-delay: -.35s; }
 
 .tele-player[data-state="playing"] .tele-wave span {
-  background: #10B981;
+  background: #0D9488;
   animation-name: teleWave;
   animation-duration: 1.1s;
   animation-timing-function: ease-in-out;
@@ -599,9 +628,9 @@ input:focus, textarea:focus {
 }
 
 .tele-progress:focus-visible {
-  outline: 2.5px solid #10B981;
+  outline: 2.5px solid #0284C7;
   outline-offset: 3px;
-  box-shadow: 0 0 0 5px rgba(16,185,129,.18);
+  box-shadow: 0 0 0 5px rgba(2,132,199,.18);
 }
 
 .tele-progress-track {
@@ -630,7 +659,7 @@ input:focus, textarea:focus {
   margin: -9px 0 0 -9px;
   border-radius: 9999px;
   background: #fff;
-  border: 3px solid #163C75;
+  border: 3px solid #0E7490;
   box-shadow: var(--shadow-md);
   transition: transform .2s var(--ease-organic);
 }
@@ -664,7 +693,7 @@ input:focus, textarea:focus {
   border-radius: .875rem;
   border: 1px solid #E2E8F0;
   background: #fff;
-  color: #163C75;
+  color: #0E7490;
   font-size: .9rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
@@ -675,11 +704,11 @@ input:focus, textarea:focus {
     transform    .25s var(--ease-spring);
 }
 
-.tele-ctrl:hover  { border-color: #163C75; background: #EFF6FF; }
+.tele-ctrl:hover  { border-color: #0E7490; background: #EFF6FF; }
 .tele-ctrl:active { transform: scale(.95); }
 
 .tele-ctrl [data-icon-muted]                        { display: none; }
-.tele-ctrl[aria-pressed="true"]                     { background: #163C75; border-color: #163C75; color: #fff; }
+.tele-ctrl[aria-pressed="true"]                     { background: #0E7490; border-color: #0E7490; color: #fff; }
 .tele-ctrl[aria-pressed="true"] [data-icon-muted]   { display: inline-block; }
 .tele-ctrl[aria-pressed="true"] [data-icon-unmuted] { display: none; }
 
@@ -712,9 +741,9 @@ input:focus, textarea:focus {
   width: 3rem;
   height: 3rem;
   border-radius: 1rem;
-  background: #163C75;
+  background: #0E7490;
   color: #fff;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 1.15rem;
   font-weight: 800;
   box-shadow: var(--shadow-blue);
@@ -728,13 +757,13 @@ input:focus, textarea:focus {
   left: 1.5rem;
   width: 2px;
   margin-left: -1px;
-  background: linear-gradient(#163C75, rgba(16,185,129,.45));
+  background: linear-gradient(#0E7490, rgba(13,148,136,.45));
 }
 
 /* ── CTA WhatsApp (texto oscuro sobre verde: contraste AA ≈ 9:1) ── */
 .tele-cta {
-  background: #25D366;
-  color: #08172E;
+  background: #1FA855;
+  color: #0F172A;
   box-shadow: var(--shadow-wa);
 }
 
@@ -754,7 +783,7 @@ input:focus, textarea:focus {
 .tele-details summary::-webkit-details-marker { display: none; }
 
 .tele-details summary:focus-visible {
-  outline: 2.5px solid #10B981;
+  outline: 2.5px solid #0D9488;
   outline-offset: 3px;
   border-radius: 8px;
 }
@@ -776,15 +805,15 @@ input:focus, textarea:focus {
 }
 
 .tele-faq[open] {
-  border-color: rgba(16,185,129,.45);
+  border-color: rgba(13,148,136,.45);
   box-shadow: var(--shadow-md);
 }
 
 .tele-faq summary {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 700;
   font-size: 1.05rem;
-  color: #08172E;
+  color: #0F172A;
 }
 
 .tele-faq p {
@@ -889,7 +918,7 @@ input:focus, textarea:focus {
   min-height: 44px;
   padding: 0 1.1rem;
   border-radius: 9999px;
-  color: #163C75;
+  color: #0E7490;
   font-size: .875rem;
   font-weight: 700;
   transition: background .3s var(--ease-organic), color .3s var(--ease-organic), box-shadow .3s var(--ease-organic);
@@ -900,8 +929,8 @@ input:focus, textarea:focus {
 
 .anat-view-toggle button[aria-pressed="true"],
 .anat-chip-group button[aria-pressed="true"] {
-  background: #163C75;
-  border-color: #163C75;
+  background: #0E7490;
+  border-color: #0E7490;
   color: #fff;
   box-shadow: var(--shadow-blue);
 }
@@ -964,8 +993,8 @@ input:focus, textarea:focus {
   height: 18px;
   border-radius: 9999px;
   background: #fff;
-  border: 4px solid #163C75;
-  box-shadow: 0 2px 8px rgba(8,23,46,.25);
+  border: 4px solid #0E7490;
+  box-shadow: 0 2px 8px rgba(15,23,42,.25);
   transition:
     transform    .3s var(--ease-spring),
     background   .3s var(--ease-organic),
@@ -978,21 +1007,21 @@ input:focus, textarea:focus {
   position: absolute;
   inset: -9px;
   border-radius: inherit;
-  border: 2px solid rgba(16,185,129,.6);
+  border: 2px solid rgba(13,148,136,.6);
   animation: anatPulse 2.4s var(--ease-organic) infinite;
 }
 
 .anat-hotspot:hover .anat-hotspot-dot,
 .anat-hotspot:focus-visible .anat-hotspot-dot {
   transform: scale(1.25);
-  border-color: #10B981;
+  border-color: #0D9488;
 }
 
 .anat-hotspot[aria-pressed="true"] .anat-hotspot-dot {
   transform: scale(1.2);
-  background: #10B981;
+  background: #0D9488;
   border-color: #fff;
-  box-shadow: 0 0 0 4px rgba(16,185,129,.35), 0 0 18px 4px rgba(16,185,129,.55);
+  box-shadow: 0 0 0 4px rgba(13,148,136,.35), 0 0 18px 4px rgba(13,148,136,.55);
 }
 
 .anat-hotspot-label {
@@ -1000,7 +1029,7 @@ input:focus, textarea:focus {
   top: 50%;
   padding: .25rem .6rem;
   border-radius: 9999px;
-  background: #08172E;
+  background: #0F172A;
   color: #fff;
   font-size: .75rem;
   font-weight: 700;
@@ -1056,7 +1085,7 @@ input:focus, textarea:focus {
   align-items: center;
   gap: .5rem;
   margin: 1.25rem 0 .6rem;
-  color: #163C75;
+  color: #0E7490;
   font-size: .8rem;
   font-weight: 800;
   letter-spacing: .06em;
@@ -1082,7 +1111,7 @@ input:focus, textarea:focus {
   width: .45rem;
   height: .45rem;
   border-radius: 9999px;
-  background: #10B981;
+  background: #0D9488;
 }
 
 .anat-list--alert li::before { background: #F59E0B; }
@@ -1101,13 +1130,13 @@ input:focus, textarea:focus {
   padding: .5rem .9rem;
   border-radius: .875rem;
   background: #EFF6FF;
-  color: #163C75;
+  color: #0E7490;
   font-size: .875rem;
   font-weight: 700;
   transition: background .3s var(--ease-organic), color .3s var(--ease-organic);
 }
 
-.anat-links a:hover { background: #163C75; color: #fff; }
+.anat-links a:hover { background: #0E7490; color: #fff; }
 
 .anat-cta-row {
   display: flex;
@@ -1132,8 +1161,8 @@ input:focus, textarea:focus {
 .anat-cta:hover { transform: translateY(-2px); filter: brightness(1.05); }
 
 /* Texto oscuro sobre verde WhatsApp (contraste AA ≈ 9:1), igual que la teleconsulta */
-.anat-cta--wa   { background: #25D366; color: #08172E; box-shadow: var(--shadow-wa); }
-.anat-cta--tele { background: #163C75; color: #fff;    box-shadow: var(--shadow-blue); }
+.anat-cta--wa   { background: #1FA855; color: #0F172A; box-shadow: var(--shadow-wa); }
+.anat-cta--tele { background: #0E7490; color: #fff;    box-shadow: var(--shadow-blue); }
 
 .anat-3d-link {
   display: inline-flex;
@@ -1144,7 +1173,7 @@ input:focus, textarea:focus {
   padding: 0 1rem;
   border-radius: .875rem;
   border: 1px dashed #93C5FD;
-  color: #163C75;
+  color: #0E7490;
   font-weight: 700;
 }
 
@@ -1156,7 +1185,7 @@ input:focus, textarea:focus {
   position: fixed;
   inset: 0;
   z-index: 69;
-  background: rgba(8,23,46,.45);
+  background: rgba(15,23,42,.45);
 }
 
 .anat-sheet-bar {
@@ -1191,7 +1220,7 @@ input:focus, textarea:focus {
   height: 44px;
   border-radius: 9999px;
   background: #F1F5F9;
-  color: #08172E;
+  color: #0F172A;
   font-size: 1.25rem;
 }
 
@@ -1285,7 +1314,7 @@ input:focus, textarea:focus {
   min-height: 56px;
   padding: 0 1.75rem;
   border-radius: 9999px;
-  background: #163C75;
+  background: #0E7490;
   color: #fff;
   font-weight: 800;
   box-shadow: var(--shadow-blue);
@@ -1304,7 +1333,7 @@ input:focus, textarea:focus {
   height: 6px;
   overflow: hidden;
   border-radius: 9999px;
-  background: rgba(22,60,117,.15);
+  background: rgba(14,116,144,.15);
 }
 
 .anat-progress-bar {
@@ -1341,14 +1370,14 @@ input:focus, textarea:focus {
   padding: .3rem .75rem;
   border-radius: 9999px;
   background: #fff;
-  border: 2px solid #10B981;
-  color: #08172E;
+  border: 2px solid #0D9488;
+  color: #0F172A;
   font-size: .75rem;
   font-weight: 700;
   box-shadow: var(--shadow-md);
 }
 
-.anat-mv-hotspot[aria-expanded="true"] { background: #10B981; }
+.anat-mv-hotspot[aria-expanded="true"] { background: #0D9488; }
 .anat-mv-hotspot:not([data-visible]) { opacity: .35; }
 
 /* ── Comparador hueso sano vs osteoporosis ── */
@@ -1385,7 +1414,7 @@ input:focus, textarea:focus {
   padding: .3rem .75rem;
   border-radius: 9999px;
   background: rgba(255,255,255,.94);
-  color: #08172E;
+  color: #0F172A;
   font-size: .75rem;
   font-weight: 800;
   box-shadow: var(--shadow-sm);
@@ -1416,7 +1445,7 @@ input:focus, textarea:focus {
   width: 3px;
   margin-left: -1.5px;
   background: #fff;
-  box-shadow: 0 0 0 1px rgba(22,60,117,.35);
+  box-shadow: 0 0 0 1px rgba(14,116,144,.35);
 }
 
 .anat-compare-knob {
@@ -1427,7 +1456,7 @@ input:focus, textarea:focus {
   width: 44px;
   height: 44px;
   border-radius: 9999px;
-  background: #163C75;
+  background: #0E7490;
   border: 3px solid #fff;
   color: #fff;
   font-size: 1.25rem;
@@ -1436,7 +1465,7 @@ input:focus, textarea:focus {
 
 .anat-compare-handle:focus-visible { outline: none; box-shadow: none; }
 .anat-compare-handle:focus-visible .anat-compare-knob {
-  outline: 2.5px solid #10B981;
+  outline: 2.5px solid #0D9488;
   outline-offset: 3px;
 }
 
@@ -1460,7 +1489,7 @@ input:focus, textarea:focus {
   border-radius: 9999px;
 }
 
-.anat-tscore-dot--ok  { background: #10B981; }
+.anat-tscore-dot--ok  { background: #0D9488; }
 .anat-tscore-dot--mid { background: #F59E0B; }
 .anat-tscore-dot--low { background: #DC2626; }
 
@@ -1499,7 +1528,7 @@ input:focus, textarea:focus {
 
 .anat-bone {
   fill: #EAF2FB;
-  stroke: #163C75;
+  stroke: #0E7490;
   stroke-opacity: .7;
   stroke-width: 2;
 }
@@ -1508,7 +1537,7 @@ input:focus, textarea:focus {
 .anat-knee-femur { transform: translateY(var(--shift)); }
 
 .anat-cart {
-  fill: #10B981;
+  fill: #0D9488;
   fill-opacity: .85;
   transform: scaleY(var(--cart));
   transform-box: fill-box;
@@ -1525,7 +1554,7 @@ input:focus, textarea:focus {
 }
 
 .anat-scler {
-  fill: #163C75;
+  fill: #0E7490;
   opacity: calc(var(--scler) * .7);
 }
 
