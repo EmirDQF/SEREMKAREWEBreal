@@ -3,6 +3,8 @@
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
+const NAVBAR_COMPACT_OFFSET = 24; // px de scroll a partir de los cuales el header se compacta
+
 // ── Mobile Menu ────────────────────────────────────────────────────────────────
 const initMobileMenu = () => {
   const btn  = $('#mobile-menu-btn');
@@ -43,79 +45,24 @@ const initScrollReveal = () => {
   targets.forEach(el => observer.observe(el));
 };
 
-// ── Mini Carousels ─────────────────────────────────────────────────────────────
-const initCarousels = () => {
-  $$('.mini-carousel').forEach(carousel => {
-    const slides = $$('.slide-item', carousel);
-    const dots   = $$('.dot-item',   carousel);
-    if (!slides.length) return;
-
-    let current  = 0;
-    let interval = null;
-
-    const show = idx => {
-      slides.forEach((s, i) => {
-        s.classList.toggle('opacity-100', i === idx);
-        s.classList.toggle('opacity-0',   i !== idx);
-        s.classList.toggle('z-10', i === idx);
-        s.classList.toggle('z-0',  i !== idx);
-      });
-      dots.forEach((d, i) => {
-        d.classList.toggle('bg-white',    i === idx);
-        d.classList.toggle('bg-white/50', i !== idx);
-        d.classList.toggle('scale-125',   i === idx);
-      });
-      current = idx;
-    };
-
-    const move = dir => show((current + dir + slides.length) % slides.length);
-
-    const startAutoplay = () => {
-      clearInterval(interval);
-      interval = setInterval(() => move(1), 4000);
-    };
-
-    // Event delegation on carousel for prev/next/dots
-    carousel.addEventListener('click', e => {
-      const btn = e.target.closest('.prev-slide, .next-slide, .dot-item');
-      if (!btn) return;
-      e.preventDefault();
-      if (btn.classList.contains('prev-slide')) move(-1);
-      else if (btn.classList.contains('next-slide')) move(1);
-      else show(dots.indexOf(btn));
-      startAutoplay();
-    });
-
-    carousel.addEventListener('mouseenter', () => clearInterval(interval));
-    carousel.addEventListener('mouseleave', startAutoplay);
-
-    let touchStartX = 0;
-    carousel.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].screenX;
-      clearInterval(interval);
-    }, { passive: true });
-
-    carousel.addEventListener('touchend', e => {
-      const delta = e.changedTouches[0].screenX - touchStartX;
-      if (Math.abs(delta) > 50) move(delta < 0 ? 1 : -1);
-      startAutoplay();
-    }, { passive: true });
-
-    startAutoplay();
-  });
-};
-
 // ── Sticky Navbar ──────────────────────────────────────────────────────────────
 const initNavbar = () => {
   const navbar = $('#navbar');
   if (!navbar) return;
 
+  // Header compacto al bajar: un solo toggle por frame (rAF) para no forzar layout en cada evento
+  let ticking = false;
+  const update = () => {
+    navbar.classList.toggle('is-compact', window.scrollY > NAVBAR_COMPACT_OFFSET);
+    ticking = false;
+  };
+
   window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY > 20;
-    navbar.classList.toggle('shadow-md',   scrolled);
-    navbar.classList.toggle('bg-white',    scrolled);
-    navbar.classList.toggle('bg-white/90', !scrolled);
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
   }, { passive: true });
+  update();
 };
 
 // ── Contact Form ───────────────────────────────────────────────────────────────
@@ -207,7 +154,7 @@ const initAudioPlayer = () => {
   const setState = state => {
     player.dataset.state = state;
     const isActive = state === 'playing' || state === 'loading';
-    toggle.setAttribute('aria-label', isActive ? 'Pausar mensaje del Dr. Colcca' : 'Reproducir mensaje del Dr. Colcca');
+    toggle.setAttribute('aria-label', isActive ? 'Pausar mensaje del Dr. Collcca' : 'Reproducir mensaje del Dr. Collcca');
   };
 
   const renderProgress = (time = audio.currentTime) => {
@@ -446,7 +393,6 @@ const initDoctorPhoto = () => {
 document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initScrollReveal();
-  initCarousels();
   initNavbar();
   initForm();
   initDoctorPhoto();

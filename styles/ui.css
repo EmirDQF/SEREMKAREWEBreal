@@ -1,0 +1,308 @@
+/* ═══════════════════════════════════════════════════════════════
+   CLINICAL LUXURY — componentes reutilizables
+   Botones, tarjetas de vidrio, sellos y etiquetas. Usa los tokens de style.css (:root).
+   Se importa entre tailwind/components y tailwind/utilities: las utilidades pueden sobrescribirlos.
+════════════════════════════════════════════════════════════════ */
+
+/* ── Etiqueta superior de sección ── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .375rem .875rem;
+  border-radius: 9999px;
+  background: rgb(var(--c-petrol) / .08);
+  border: 1px solid rgb(var(--c-petrol) / .18);
+  color: rgb(var(--c-petrol));
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.eyebrow--dark {
+  background: rgb(255 255 255 / .08);
+  border-color: rgb(255 255 255 / .18);
+  color: #E2E8F0;
+}
+
+/* ── Botones ── */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .625rem;
+  min-height: 3rem;
+  padding: .875rem 1.5rem;
+  border-radius: var(--radius-ctl);
+  border: 1.5px solid transparent;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--dur-ui) var(--ease-lux),
+    box-shadow var(--dur-ui) var(--ease-lux),
+    background-color var(--dur-ui) var(--ease-lux),
+    border-color var(--dur-ui) var(--ease-lux),
+    color var(--dur-ui) var(--ease-lux);
+}
+
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(.985); }
+
+.btn--lg { min-height: 3.5rem; padding: 1rem 1.75rem; font-size: 1.125rem; }
+.btn--block { width: 100%; }
+
+.btn--primary { background: rgb(var(--c-navy)); color: #fff; box-shadow: 0 10px 24px -10px rgb(var(--c-navy) / .55); }
+.btn--primary:hover { background: rgb(var(--c-petrol)); box-shadow: 0 16px 32px -12px rgb(var(--c-petrol) / .6); }
+
+.btn--accent { background: rgb(var(--c-petrol)); color: #fff; box-shadow: 0 10px 24px -10px rgb(var(--c-petrol) / .6); }
+.btn--accent:hover { background: #155E75; box-shadow: 0 16px 32px -12px rgb(var(--c-petrol) / .7); }
+
+/* Dorado: solo para el CTA estrella sobre fondo navy (texto navy: contraste 7.6:1) */
+.btn--gold { background: rgb(var(--c-gold-light)); color: rgb(var(--c-navy)); box-shadow: 0 12px 28px -12px rgb(var(--c-gold-light) / .7); }
+.btn--gold:hover { background: #FBBF24; }
+
+.btn--wa { background: rgb(var(--c-whatsapp)); color: rgb(var(--c-navy)); box-shadow: 0 10px 24px -10px rgb(var(--c-whatsapp) / .6); }
+.btn--wa:hover { background: #22C55E; box-shadow: 0 16px 32px -12px rgb(var(--c-whatsapp) / .7); }
+
+.btn--outline { background: #fff; color: rgb(var(--c-petrol)); border-color: rgb(var(--c-petrol) / .45); }
+.btn--outline:hover { border-color: rgb(var(--c-petrol)); background: rgb(var(--c-petrol) / .06); }
+
+.btn--ghost-light { background: rgb(255 255 255 / .06); color: #fff; border-color: rgb(255 255 255 / .3); backdrop-filter: blur(6px); }
+.btn--ghost-light:hover { background: rgb(255 255 255 / .12); border-color: #fff; }
+
+/* ── Tarjeta de vidrio suave ── */
+.glass-card {
+  background: rgb(255 255 255 / .82);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgb(226 232 240 / .8);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-md);
+  transition: transform 250ms var(--ease-lux), box-shadow 250ms var(--ease-lux), border-color 250ms var(--ease-lux);
+}
+
+.glass-card--hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgb(var(--c-petrol) / .3);
+}
+
+/* ── Sello dorado de verificación ── */
+.seal-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem 1rem;
+  border-radius: 9999px;
+  background: #FFFBEB;
+  border: 1px solid rgb(var(--c-gold) / .45);
+  color: #92400E; /* ámbar 800: contraste 7:1 sobre #FFFBEB */
+  font-size: .875rem;
+  font-weight: 700;
+  box-shadow: 0 8px 20px -10px rgb(var(--c-gold) / .5);
+}
+
+.seal-gold i { color: rgb(var(--c-gold)); font-size: 1.15rem; }
+
+/* ── Lista de chips (condiciones que trata) ── */
+.chip-list { display: flex; flex-wrap: wrap; gap: .5rem; }
+
+.chip-list li {
+  display: inline-flex;
+  align-items: center;
+  gap: .375rem;
+  padding: .45rem .9rem;
+  border-radius: 9999px;
+  background: #fff;
+  border: 1px solid rgb(226 232 240);
+  color: #334155;
+  font-size: .9375rem;
+  font-weight: 600;
+}
+
+.chip-list li i { color: rgb(var(--c-teal)); }
+
+/* ── Lista con iconos ── */
+.check-list { display: grid; gap: .75rem; }
+.check-list li { display: flex; align-items: flex-start; gap: .75rem; color: #334155; }
+.check-list li i { color: rgb(var(--c-teal)); font-size: 1.35rem; flex-shrink: 0; margin-top: .1rem; }
+
+/* ── Retrato del doctor ── */
+.doc-seal {
+  position: absolute;
+  left: 50%;
+  bottom: -1.25rem;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+/* ── Aviso médico ── */
+.med-note {
+  display: flex;
+  gap: .75rem;
+  align-items: flex-start;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-ctl);
+  background: rgb(var(--c-surface));
+  border: 1px solid rgb(226 232 240);
+  color: #475569;
+  font-size: .9375rem;
+}
+
+.med-note i { color: rgb(var(--c-petrol)); font-size: 1.25rem; flex-shrink: 0; margin-top: .1rem; }
+
+/* Marcador visible para datos que aún faltan (lista de pendientes) */
+.is-placeholder {
+  background: #FEF3C7;
+  color: #92400E;
+  border-radius: .25rem;
+  padding: 0 .25rem;
+  font-weight: 700;
+}
+
+/* ═══ HEADER ═══════════════════════════════════════════════════ */
+.skip-link {
+  position: fixed;
+  top: .75rem;
+  left: .75rem;
+  z-index: 100;
+  padding: .75rem 1.25rem;
+  border-radius: var(--radius-ctl);
+  background: rgb(var(--c-navy));
+  color: #fff;
+  font-weight: 700;
+  transform: translateY(-200%);
+  transition: transform var(--dur-ui) var(--ease-lux);
+}
+.skip-link:focus { transform: translateY(0); }
+
+.site-header {
+  background: rgb(255 255 255 / .86);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border-bottom: 1px solid rgb(226 232 240 / .8);
+  transition: box-shadow 250ms var(--ease-lux), background-color 250ms var(--ease-lux);
+}
+
+.site-header-bar { height: 5rem; transition: height 250ms var(--ease-lux); }
+
+.site-header.is-compact { background: rgb(255 255 255 / .96); box-shadow: 0 8px 24px -12px rgb(var(--c-navy) / .18); }
+.site-header.is-compact .site-header-bar { height: 4rem; }
+
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-ctl);
+  background: linear-gradient(135deg, rgb(var(--c-navy)), rgb(var(--c-petrol)));
+  color: #fff;
+  font-size: 1.6rem;
+  box-shadow: 0 8px 18px -8px rgb(var(--c-petrol) / .7);
+  transition: transform var(--dur-ui) var(--ease-lux);
+}
+.group:hover .site-logo { transform: rotate(-6deg) scale(1.05); }
+
+/* Subrayado animado */
+.nav-link {
+  position: relative;
+  padding: .5rem 0;
+  font-size: .95rem;
+  font-weight: 600;
+  color: #334155;
+  transition: color var(--dur-ui) var(--ease-lux);
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: .2rem;
+  height: 2px;
+  border-radius: 2px;
+  background: rgb(var(--c-petrol));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 250ms var(--ease-lux);
+}
+.nav-link:hover { color: rgb(var(--c-petrol)); }
+.nav-link:hover::after { transform: scaleX(1); }
+
+.mobile-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  min-height: 3.25rem;
+  padding: .5rem 0;
+  border-bottom: 1px solid rgb(226 232 240);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: rgb(var(--c-navy));
+}
+
+/* Píldora de teleconsulta: navy + filete dorado, distinta a los demás enlaces */
+.tele-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  min-height: 2.75rem;
+  padding: .45rem 1rem;
+  border-radius: 9999px;
+  background: rgb(var(--c-navy));
+  border: 1px solid rgb(var(--c-gold-light) / .6);
+  color: #fff;
+  font-size: .875rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px -10px rgb(var(--c-navy) / .6);
+  transition: transform var(--dur-ui) var(--ease-lux), box-shadow var(--dur-ui) var(--ease-lux);
+}
+.tele-pill:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -10px rgb(var(--c-gold-light) / .5); }
+.tele-pill--compact { padding: .4rem .8rem; font-size: .8125rem; }
+
+/* ═══ SERVICIOS ════════════════════════════════════════════════ */
+.svc-card { display: flex; flex-direction: column; gap: .75rem; padding: 1.75rem; }
+@media (min-width: 768px) { .svc-card { padding: 2.25rem; } }
+
+.svc-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: .25rem;
+  border-radius: var(--radius-ctl);
+  background: linear-gradient(135deg, rgb(var(--c-petrol) / .12), rgb(var(--c-cyan) / .08));
+  border: 1px solid rgb(var(--c-petrol) / .18);
+  color: rgb(var(--c-petrol));
+  font-size: 1.9rem;
+  transition: transform 300ms var(--ease-lux);
+}
+.svc-card:hover .svc-icon { transform: translateY(-2px) rotate(-4deg); }
+
+.svc-tag { color: rgb(var(--c-petrol)); font-weight: 700; font-size: .9375rem; }
+
+.svc-for {
+  padding: .875rem 1rem;
+  border-radius: var(--radius-ctl);
+  background: rgb(var(--c-surface));
+  border: 1px solid rgb(226 232 240);
+  color: #475569;
+  font-size: .9375rem;
+}
+.svc-for strong { color: rgb(var(--c-navy)); }
+
+.svc-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: auto; padding-top: .75rem; }
+@media (max-width: 639px) { .svc-actions .btn { width: 100%; } }
+
+/* ═══ EQUIPO DE APOYO ═════════════════════════════════════════ */
+.staff-photo { background: linear-gradient(135deg, rgb(var(--c-petrol) / .15), rgb(var(--c-navy) / .1)); }
