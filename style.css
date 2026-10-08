@@ -1,0 +1,1582 @@
+/* ═══════════════════════════════════════════════════════════════
+   SERMEKARE — Premium CSS System
+   Glassmorphism · Vivid Motion · 3D Micro-interactions · Depth
+════════════════════════════════════════════════════════════════ */
+
+/* ── Variables del Sistema ── */
+:root {
+  --ease-organic:   cubic-bezier(.4, 0, .2, 1);
+  --ease-spring:    cubic-bezier(.34, 1.56, .64, 1);
+  --ease-out-expo:  cubic-bezier(.19, 1, .22, 1);
+  --ease-in-back:   cubic-bezier(.36, 0, .66, -.56);
+
+  --shadow-sm:      0 1px 3px rgba(8,23,46,.06), 0 1px 2px rgba(8,23,46,.04);
+  --shadow-md:      0 4px 16px rgba(8,23,46,.08), 0 2px 6px rgba(8,23,46,.05);
+  --shadow-lg:      0 12px 40px rgba(8,23,46,.12), 0 4px 16px rgba(8,23,46,.07);
+  --shadow-xl:      0 24px 64px rgba(8,23,46,.15), 0 8px 24px rgba(8,23,46,.09);
+  --shadow-2xl:     0 40px 96px rgba(8,23,46,.18), 0 16px 40px rgba(8,23,46,.10);
+
+  --shadow-blue:    0 16px 48px rgba(22,60,117,.25), 0 4px 16px rgba(22,60,117,.15);
+  --shadow-green:   0 16px 48px rgba(16,185,129,.30), 0 4px 16px rgba(16,185,129,.18);
+  --shadow-wa:      0 16px 48px rgba(37,211,102,.35), 0 4px 16px rgba(37,211,102,.20);
+
+  --glass-bg:       rgba(255, 255, 255, 0.65);
+  --glass-border:   rgba(255, 255, 255, 0.45);
+  --glass-blur:     blur(20px) saturate(180%);
+
+  --glass-dark-bg:  rgba(8, 23, 46, 0.55);
+  --glass-dark-border: rgba(255,255,255,.10);
+  --glass-dark-blur: blur(24px) saturate(160%);
+
+  --gradient-brand: linear-gradient(135deg, #08172E 0%, #163C75 60%, #1a4a8f 100%);
+  --gradient-accent: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  --gradient-shimmer: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.18) 50%, transparent 70%);
+}
+
+/* ── Optimización Tipográfica ── */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   KEYFRAMES — Sistema de Animaciones
+════════════════════════════════════════════════════════════════ */
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(36px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);    }
+}
+
+@keyframes fadeSlideLeft {
+  from { opacity: 0; transform: translateX(-36px) scale(.98); }
+  to   { opacity: 1; transform: translateX(0)     scale(1);   }
+}
+
+@keyframes fadeSlideRight {
+  from { opacity: 0; transform: translateX(36px) scale(.98); }
+  to   { opacity: 1; transform: translateX(0)    scale(1);   }
+}
+
+@keyframes fadeZoom {
+  from { opacity: 0; transform: scale(.93) translateY(12px); }
+  to   { opacity: 1; transform: scale(1)   translateY(0);    }
+}
+
+@keyframes shimmerSweep {
+  from { background-position: -200% center; }
+  to   { background-position:  200% center; }
+}
+
+@keyframes gradientDrift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,.30); }
+  50%       { box-shadow: 0 0 0 12px rgba(16,185,129,0); }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+@keyframes borderGlow {
+  0%, 100% { border-color: rgba(22,60,117,.20); }
+  50%       { border-color: rgba(16,185,129,.50); }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   REVEAL — Sistema de Entrada
+════════════════════════════════════════════════════════════════ */
+
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-zoom {
+  will-change: opacity, transform;
+}
+
+.reveal       { opacity: 0; transform: translateY(36px) scale(.98); }
+.reveal-left  { opacity: 0; transform: translateX(-36px) scale(.98); }
+.reveal-right { opacity: 0; transform: translateX(36px) scale(.98); }
+.reveal-zoom  { opacity: 0; transform: scale(.93) translateY(12px); }
+
+.reveal.active {
+  animation: fadeSlideUp   .85s var(--ease-out-expo) forwards;
+}
+.reveal-left.active {
+  animation: fadeSlideLeft  .85s var(--ease-out-expo) forwards;
+}
+.reveal-right.active {
+  animation: fadeSlideRight .85s var(--ease-out-expo) forwards;
+}
+.reveal-zoom.active {
+  animation: fadeZoom       .85s var(--ease-out-expo) forwards;
+}
+
+/* Stagger automático por hermanos */
+.reveal.active:nth-child(1),
+.reveal-left.active:nth-child(1),
+.reveal-right.active:nth-child(1),
+.reveal-zoom.active:nth-child(1) { animation-delay: .05s; }
+
+.reveal.active:nth-child(2),
+.reveal-left.active:nth-child(2),
+.reveal-right.active:nth-child(2),
+.reveal-zoom.active:nth-child(2) { animation-delay: .15s; }
+
+.reveal.active:nth-child(3),
+.reveal-left.active:nth-child(3),
+.reveal-right.active:nth-child(3),
+.reveal-zoom.active:nth-child(3) { animation-delay: .25s; }
+
+.reveal.active:nth-child(4),
+.reveal-left.active:nth-child(4),
+.reveal-right.active:nth-child(4),
+.reveal-zoom.active:nth-child(4) { animation-delay: .35s; }
+
+.reveal.active:nth-child(n+5),
+.reveal-left.active:nth-child(n+5),
+.reveal-right.active:nth-child(n+5),
+.reveal-zoom.active:nth-child(n+5) { animation-delay: .45s; }
+
+/* ════════════════════════════════════════════════════════════════
+   CARDS — Glassmorphism + 3D Premium
+════════════════════════════════════════════════════════════════ */
+
+.card-ui {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-md);
+  transition:
+    transform       .5s var(--ease-spring),
+    box-shadow      .5s var(--ease-organic),
+    border-color    .4s var(--ease-organic),
+    background      .4s var(--ease-organic);
+  will-change: transform, box-shadow;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+.card-ui:hover {
+  transform: translateY(-10px) scale(1.012) rotateX(1.5deg);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(16,185,129,.35);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+/* ── Imagen con Zoom suave ── */
+.img-zoom {
+  transition: transform .9s var(--ease-out-expo);
+  will-change: transform;
+}
+
+.card-ui:hover .img-zoom,
+.group:hover .img-zoom {
+  transform: scale(1.06) translateZ(0);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   BOTONES — Shine Sweep + Gradiente Animado
+════════════════════════════════════════════════════════════════ */
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform    .35s var(--ease-spring),
+    box-shadow   .35s var(--ease-organic),
+    filter       .35s var(--ease-organic);
+}
+
+/* Sweep de luz */
+.btn-shine::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-shimmer);
+  background-size: 200% auto;
+  opacity: 0;
+  transition: opacity .4s var(--ease-organic);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Brillo deslizante */
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  background: rgba(255, 255, 255, .14);
+  transform: rotate(35deg) translateY(-120%);
+  transition: transform .65s var(--ease-out-expo);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn-shine:hover::before {
+  opacity: 1;
+  animation: shimmerSweep 1.4s var(--ease-organic) infinite;
+}
+
+.btn-shine:hover::after {
+  transform: rotate(35deg) translateY(120%);
+}
+
+.btn-shine:hover {
+  transform: translateY(-3px) scale(1.015);
+  filter: brightness(1.08);
+  box-shadow: var(--shadow-blue);
+}
+
+.btn-shine:active {
+  transform: translateY(-1px) scale(.995);
+  filter: brightness(.97);
+  transition-duration: .12s;
+}
+
+/* WhatsApp button específico */
+.btn-shine[href*="wa.me"]:hover,
+.btn-shine.bg-\[#25D366\]:hover {
+  box-shadow: var(--shadow-wa);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ACCESIBILIDAD — Focus Ring Premium
+════════════════════════════════════════════════════════════════ */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2.5px solid #10B981;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(16,185,129,.18);
+  border-radius: 4px;
+  transition: box-shadow .2s var(--ease-organic);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SCROLLBAR — Ocultar en Sliders
+════════════════════════════════════════════════════════════════ */
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ════════════════════════════════════════════════════════════════
+   UTILIDADES EXTRA — Depth & Vitalidad
+════════════════════════════════════════════════════════════════ */
+
+/* Borde animado al hacer hover en elementos de interés */
+.border-animate {
+  transition: border-color .6s var(--ease-organic);
+  animation: borderGlow 3.5s var(--ease-organic) infinite;
+}
+
+/* Float suave para íconos decorativos */
+.float-icon {
+  animation: floatY 3.8s var(--ease-organic) infinite;
+}
+
+/* Glassmorphism oscuro (footer, overlays) */
+.glass-dark {
+  background: var(--glass-dark-bg);
+  backdrop-filter: var(--glass-dark-blur);
+  -webkit-backdrop-filter: var(--glass-dark-blur);
+  border: 1px solid var(--glass-dark-border);
+}
+
+/* Glassmorphism claro */
+.glass-light {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+}
+
+/* Sombra texto premium */
+.text-shadow-sm  { text-shadow: 0 1px 3px rgba(8,23,46,.15); }
+.text-shadow-md  { text-shadow: 0 2px 8px rgba(8,23,46,.22); }
+.text-shadow-lg  { text-shadow: 0 4px 16px rgba(8,23,46,.30); }
+
+/* Gradiente de borde animado */
+.border-gradient {
+  position: relative;
+  border-radius: inherit;
+}
+.border-gradient::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #10B981, #163C75, #10B981);
+  background-size: 200% 200%;
+  animation: gradientDrift 4s ease infinite;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity .4s var(--ease-organic);
+}
+.border-gradient:hover::before { opacity: 1; }
+
+/* Pulse glow para CTAs prioritarios */
+.pulse-glow {
+  animation: pulseGlow 2.5s var(--ease-organic) infinite;
+}
+
+/* WhatsApp flotante — refuerzo premium */
+a[aria-label*="WhatsApp"] {
+  box-shadow: var(--shadow-wa) !important;
+  transition:
+    transform    .4s var(--ease-spring),
+    box-shadow   .4s var(--ease-organic),
+    filter       .3s var(--ease-organic);
+}
+
+a[aria-label*="WhatsApp"]:hover {
+  transform: translateY(-4px) scale(1.08) !important;
+  filter: brightness(1.08) saturate(1.15);
+  box-shadow: 0 24px 56px rgba(37,211,102,.45), 0 8px 24px rgba(37,211,102,.25) !important;
+}
+
+/* Social links footer */
+nav[aria-label*="Redes"] a {
+  transition:
+    background   .35s var(--ease-organic),
+    transform    .35s var(--ease-spring),
+    box-shadow   .35s var(--ease-organic);
+}
+
+nav[aria-label*="Redes"] a:hover {
+  box-shadow: var(--shadow-green);
+  transform: translateY(-4px) scale(1.08) !important;
+}
+
+/* Input fields premium */
+input, textarea, select {
+  transition:
+    border-color .3s var(--ease-organic),
+    box-shadow   .3s var(--ease-organic),
+    background   .3s var(--ease-organic),
+    transform    .2s var(--ease-organic);
+}
+
+input:focus, textarea:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 4px rgba(22,60,117,.12), var(--shadow-md);
+}
+
+/* Gradiente animado para fondos de sección */
+.bg-gradient-animated {
+  background: linear-gradient(-45deg, #08172E, #163C75, #0f2d5c, #1a4a8f);
+  background-size: 400% 400%;
+  animation: gradientDrift 8s ease infinite;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ═══ TELECONSULTA ═══
+   Sección #teleconsulta: fondo, foto con placeholder, badge de
+   disponibilidad, reproductor de audio, pasos, CTA y FAQ.
+════════════════════════════════════════════════════════════════ */
+
+@keyframes telePing {
+  0%   { transform: scale(1);   opacity: .7; }
+  100% { transform: scale(2.6); opacity: 0;  }
+}
+
+@keyframes teleSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes teleWave {
+  0%, 100% { transform: scaleY(.45); }
+  50%       { transform: scaleY(1);   }
+}
+
+/* ── Fondo diferenciado ── */
+.tele-section {
+  background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 75%);
+}
+
+.tele-blur {
+  position: absolute;
+  top: -10rem;
+  right: -12rem;
+  width: 34rem;
+  height: 34rem;
+  border-radius: 9999px;
+  background: rgba(16,185,129,.16);
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.tele-blur--secondary {
+  top: auto;
+  right: auto;
+  bottom: 10rem;
+  left: -14rem;
+  background: rgba(22,60,117,.08);
+}
+
+/* ── Badge "Nuevo" del menú ── */
+.tele-new-badge {
+  display: inline-block;
+  padding: .125rem .45rem;
+  border-radius: 9999px;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  color: #047857;
+  font-size: .625rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+/* ── Chips de plataformas ── */
+.tele-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  min-height: 44px;
+  padding: .5rem 1rem;
+  border-radius: 9999px;
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  box-shadow: var(--shadow-sm);
+  color: #08172E;
+  font-size: .9rem;
+  font-weight: 600;
+}
+
+/* ── Foto del doctor + placeholder "DC" ── */
+.tele-photo-placeholder {
+  background: var(--gradient-brand);
+  color: #fff;
+}
+
+.tele-photo-placeholder span {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(4.5rem, 20vw, 8rem);
+  font-weight: 800;
+  letter-spacing: .06em;
+  opacity: .92;
+}
+
+/* La foto tapa el placeholder; si falla la carga, JS la oculta */
+.tele-photo img.is-missing { visibility: hidden; }
+
+/* ── Badge de disponibilidad ── */
+.tele-dot {
+  position: relative;
+  flex-shrink: 0;
+  width: .625rem;
+  height: .625rem;
+  border-radius: 9999px;
+  background: #10B981;
+}
+
+.tele-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: telePing 1.8s var(--ease-organic) infinite;
+}
+
+/* "Próxima atención: …" → punto ámbar estático (no simula disponibilidad inmediata) */
+.tele-availability[data-state="later"] .tele-dot { background: #F59E0B; }
+.tele-availability[data-state="later"] .tele-dot::after { animation: none; opacity: 0; }
+
+/* ── Reproductor de audio ── */
+.tele-player-ui[hidden],
+.tele-player-error[hidden] { display: none !important; }
+
+.tele-player-main {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tele-player-track {
+  flex: 1;
+  min-width: 0;
+}
+
+.tele-play {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 9999px;
+  background: #163C75;
+  color: #fff;
+  box-shadow: var(--shadow-blue);
+  transition:
+    transform  .35s var(--ease-spring),
+    background .3s  var(--ease-organic);
+}
+
+.tele-play:hover  { transform: scale(1.07); background: #08172E; }
+.tele-play:active { transform: scale(.94); transition-duration: .12s; }
+.tele-play:focus-visible { border-radius: 9999px; }
+
+/* Íconos según estado (data-state en .tele-player) */
+.tele-player [data-icon-pause],
+.tele-player .tele-spinner { display: none; }
+
+.tele-player[data-state="playing"] [data-icon-play],
+.tele-player[data-state="loading"] [data-icon-play] { display: none; }
+
+.tele-player[data-state="playing"] [data-icon-pause] { display: inline-block; }
+.tele-player[data-state="loading"] .tele-spinner     { display: block; }
+
+.tele-spinner {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 9999px;
+  border: 3px solid rgba(255,255,255,.35);
+  border-top-color: #fff;
+  animation: teleSpin .8s linear infinite;
+}
+
+/* Onda decorativa: solo se anima mientras suena */
+.tele-wave {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 28px;
+}
+
+.tele-wave span {
+  flex: 1;
+  max-width: 5px;
+  height: 45%;
+  border-radius: 9999px;
+  background: rgba(22,60,117,.22);
+  transform-origin: center;
+  transition: background .3s var(--ease-organic);
+}
+
+.tele-wave span:nth-child(3n+1) { height: 70%;  animation-delay: -.2s; }
+.tele-wave span:nth-child(3n+2) { height: 100%; animation-delay: -.5s; }
+.tele-wave span:nth-child(4n)   { height: 55%;  animation-delay: -.8s; }
+.tele-wave span:nth-child(5n)   { height: 85%;  animation-delay: -.35s; }
+
+.tele-player[data-state="playing"] .tele-wave span {
+  background: #10B981;
+  animation-name: teleWave;
+  animation-duration: 1.1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+/* Barra de progreso (role="slider") — área táctil de 44px */
+.tele-progress {
+  --p: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  cursor: pointer;
+  touch-action: none;
+  border-radius: 8px;
+}
+
+.tele-progress:focus-visible {
+  outline: 2.5px solid #10B981;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(16,185,129,.18);
+}
+
+.tele-progress-track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  border-radius: 9999px;
+  background: #E2E8F0;
+  overflow: hidden;
+}
+
+.tele-progress-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-accent);
+  transform: scaleX(var(--p));
+  transform-origin: left center;
+}
+
+.tele-progress-thumb {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--p) * 100%);
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 3px solid #163C75;
+  box-shadow: var(--shadow-md);
+  transition: transform .2s var(--ease-organic);
+}
+
+.tele-progress:hover .tele-progress-thumb,
+.tele-progress:focus-visible .tele-progress-thumb { transform: scale(1.2); }
+
+.tele-times {
+  display: flex;
+  justify-content: space-between;
+  font-size: .8rem;
+  font-weight: 600;
+  color: #475569;
+  font-variant-numeric: tabular-nums;
+}
+
+.tele-player-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: .5rem;
+  margin-top: 1rem;
+}
+
+.tele-ctrl {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 .875rem;
+  border-radius: .875rem;
+  border: 1px solid #E2E8F0;
+  background: #fff;
+  color: #163C75;
+  font-size: .9rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  transition:
+    background   .3s var(--ease-organic),
+    border-color .3s var(--ease-organic),
+    color        .3s var(--ease-organic),
+    transform    .25s var(--ease-spring);
+}
+
+.tele-ctrl:hover  { border-color: #163C75; background: #EFF6FF; }
+.tele-ctrl:active { transform: scale(.95); }
+
+.tele-ctrl [data-icon-muted]                        { display: none; }
+.tele-ctrl[aria-pressed="true"]                     { background: #163C75; border-color: #163C75; color: #fff; }
+.tele-ctrl[aria-pressed="true"] [data-icon-muted]   { display: inline-block; }
+.tele-ctrl[aria-pressed="true"] [data-icon-unmuted] { display: none; }
+
+.tele-player-error {
+  display: flex;
+  align-items: flex-start;
+  gap: .5rem;
+  padding: .875rem 1rem;
+  border-radius: 1rem;
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  color: #92400E;
+  font-weight: 600;
+}
+
+/* ── Pasos con conector visual ── */
+.tele-step {
+  position: relative;
+  display: flex;
+  gap: 1.25rem;
+}
+
+.tele-step-num {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  background: #163C75;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  box-shadow: var(--shadow-blue);
+}
+
+.tele-step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  top: 3rem;
+  bottom: -1.5rem;
+  left: 1.5rem;
+  width: 2px;
+  margin-left: -1px;
+  background: linear-gradient(#163C75, rgba(16,185,129,.45));
+}
+
+/* ── CTA WhatsApp (texto oscuro sobre verde: contraste AA ≈ 9:1) ── */
+.tele-cta {
+  background: #25D366;
+  color: #08172E;
+  box-shadow: var(--shadow-wa);
+}
+
+.tele-cta:hover { background: #2EE372; }
+
+/* ── <details>: transcripción y FAQ ── */
+.tele-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 44px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.tele-details summary::-webkit-details-marker { display: none; }
+
+.tele-details summary:focus-visible {
+  outline: 2.5px solid #10B981;
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+.tele-caret {
+  flex-shrink: 0;
+  transition: transform .3s var(--ease-organic);
+}
+
+.tele-details[open] > summary .tele-caret { transform: rotate(180deg); }
+
+.tele-faq {
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 1.5rem;
+  padding: .75rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: border-color .3s var(--ease-organic), box-shadow .3s var(--ease-organic);
+}
+
+.tele-faq[open] {
+  border-color: rgba(16,185,129,.45);
+  box-shadow: var(--shadow-md);
+}
+
+.tele-faq summary {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #08172E;
+}
+
+.tele-faq p {
+  padding: .25rem 0 .75rem;
+  color: #4B5563;
+  line-height: 1.7;
+}
+
+/* ── Movimiento reducido ── */
+@media (prefers-reduced-motion: reduce) {
+  .tele-dot::after,
+  .tele-wave span,
+  .tele-player[data-state="playing"] .tele-wave span { animation: none !important; }
+
+  .tele-spinner { animation-duration: 2.4s; }
+
+  .tele-play,
+  .tele-ctrl,
+  .tele-caret,
+  .tele-progress-thumb { transition: none; }
+
+  #teleconsulta .reveal,
+  #teleconsulta .reveal-left,
+  #teleconsulta .reveal-right {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ═══ ANATOMÍA ═══
+   Sección #anatomia ("Conoce tu cuerpo"): mapa del dolor (SVG +
+   hotspots), panel / bottom sheet, visor 3D opcional, comparador
+   hueso sano vs osteoporosis y etapas de la artrosis.
+════════════════════════════════════════════════════════════════ */
+
+@keyframes anatPulse {
+  0%   { transform: scale(.6);  opacity: .9; }
+  100% { transform: scale(1.6); opacity: 0;  }
+}
+
+@keyframes anatGlow {
+  0%, 100% { opacity: .7; }
+  50%       { opacity: 1;  }
+}
+
+@keyframes anatSheetIn {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0);    }
+}
+
+.anat-section {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+}
+
+/* Aviso educativo (ámbar: informativo, contraste AA) */
+.anat-disclaimer {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: .5rem;
+  padding: .625rem 1rem;
+  border-radius: 9999px;
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  color: #92400E;
+  font-size: .875rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.anat-disclaimer--small {
+  display: flex;
+  margin-top: 1.5rem;
+  border-radius: 1rem;
+  font-size: .8rem;
+}
+
+/* ── Selector de vista y grupos de chips ── */
+.anat-view-toggle,
+.anat-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem;
+}
+
+.anat-view-toggle {
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto 1.25rem;
+  padding: .25rem;
+  border-radius: 9999px;
+  background: #EEF4FB;
+  border: 1px solid #DBE7F5;
+}
+
+.anat-view-toggle[hidden],
+.anat-chip-group[hidden] { display: none; }
+
+.anat-view-toggle button,
+.anat-chip-group button {
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border-radius: 9999px;
+  color: #163C75;
+  font-size: .875rem;
+  font-weight: 700;
+  transition: background .3s var(--ease-organic), color .3s var(--ease-organic), box-shadow .3s var(--ease-organic);
+}
+
+.anat-chip-group { gap: .5rem; }
+.anat-chip-group button { background: #fff; border: 1px solid #DBE7F5; }
+
+.anat-view-toggle button[aria-pressed="true"],
+.anat-chip-group button[aria-pressed="true"] {
+  background: #163C75;
+  border-color: #163C75;
+  color: #fff;
+  box-shadow: var(--shadow-blue);
+}
+
+/* ── Figura del cuerpo (proporción fija: no se deforma) ── */
+.anat-figure {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  aspect-ratio: 200 / 440;
+}
+
+.anat-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.anat-figure[data-current-view="front"] [data-view-detail="back"],
+.anat-figure[data-current-view="back"] [data-view-detail="front"] { display: none; }
+
+.anat-hotspots[hidden] { display: none; }
+
+.anat-zone-glow {
+  opacity: 0;
+  transition: opacity .35s var(--ease-organic);
+}
+
+.anat-zone-glow.is-active {
+  opacity: 1;
+  animation: anatGlow 2.2s var(--ease-organic) infinite;
+}
+
+/* Hotspots: área táctil de 44 px, punto visible de 18 px */
+.anat-hotspot {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.anat-hotspot:focus-visible {
+  border-radius: 9999px;
+  outline-offset: 0;
+}
+
+.anat-hotspot-dot {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 4px solid #163C75;
+  box-shadow: 0 2px 8px rgba(8,23,46,.25);
+  transition:
+    transform    .3s var(--ease-spring),
+    background   .3s var(--ease-organic),
+    border-color .3s var(--ease-organic),
+    box-shadow   .3s var(--ease-organic);
+}
+
+.anat-hotspot-dot::after {
+  content: '';
+  position: absolute;
+  inset: -9px;
+  border-radius: inherit;
+  border: 2px solid rgba(16,185,129,.6);
+  animation: anatPulse 2.4s var(--ease-organic) infinite;
+}
+
+.anat-hotspot:hover .anat-hotspot-dot,
+.anat-hotspot:focus-visible .anat-hotspot-dot {
+  transform: scale(1.25);
+  border-color: #10B981;
+}
+
+.anat-hotspot[aria-pressed="true"] .anat-hotspot-dot {
+  transform: scale(1.2);
+  background: #10B981;
+  border-color: #fff;
+  box-shadow: 0 0 0 4px rgba(16,185,129,.35), 0 0 18px 4px rgba(16,185,129,.55);
+}
+
+.anat-hotspot-label {
+  position: absolute;
+  top: 50%;
+  padding: .25rem .6rem;
+  border-radius: 9999px;
+  background: #08172E;
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s var(--ease-organic);
+}
+
+.anat-hotspot--right .anat-hotspot-label { left: calc(100% - 4px); }
+.anat-hotspot--left  .anat-hotspot-label { right: calc(100% - 4px); }
+
+.anat-hotspot:hover .anat-hotspot-label,
+.anat-hotspot:focus-visible .anat-hotspot-label,
+.anat-hotspot[aria-pressed="true"] .anat-hotspot-label { opacity: 1; }
+
+/* ── Panel de la zona (columna en desktop, bottom sheet en mobile) ── */
+.anat-panel {
+  position: relative;
+  padding: 1.75rem;
+  border-radius: 2rem;
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  box-shadow: var(--shadow-lg);
+}
+
+.anat-zone-info[hidden],
+.anat-intro[hidden] { display: none; }
+
+.anat-intro {
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.anat-intro-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1rem;
+  border-radius: 1.25rem;
+  background: #ECFDF5;
+  color: #047857;
+  font-size: 2rem;
+}
+
+.anat-zone-info h3:focus { outline: none; }
+
+.anat-subtitle {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: 1.25rem 0 .6rem;
+  color: #163C75;
+  font-size: .8rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.anat-subtitle--alert { color: #B45309; }
+
+.anat-list { display: grid; gap: .4rem; }
+
+.anat-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  color: #374151;
+  line-height: 1.55;
+}
+
+.anat-list li::before {
+  content: '';
+  position: absolute;
+  top: .6em;
+  left: .2rem;
+  width: .45rem;
+  height: .45rem;
+  border-radius: 9999px;
+  background: #10B981;
+}
+
+.anat-list--alert li::before { background: #F59E0B; }
+
+.anat-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.anat-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  min-height: 44px;
+  padding: .5rem .9rem;
+  border-radius: .875rem;
+  background: #EFF6FF;
+  color: #163C75;
+  font-size: .875rem;
+  font-weight: 700;
+  transition: background .3s var(--ease-organic), color .3s var(--ease-organic);
+}
+
+.anat-links a:hover { background: #163C75; color: #fff; }
+
+.anat-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: 1.5rem;
+}
+
+.anat-cta {
+  display: inline-flex;
+  flex: 1 1 180px;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: 52px;
+  padding: .75rem 1.25rem;
+  border-radius: 1rem;
+  font-weight: 800;
+  transition: transform .3s var(--ease-spring), box-shadow .3s var(--ease-organic), filter .3s var(--ease-organic);
+}
+
+.anat-cta:hover { transform: translateY(-2px); filter: brightness(1.05); }
+
+/* Texto oscuro sobre verde WhatsApp (contraste AA ≈ 9:1), igual que la teleconsulta */
+.anat-cta--wa   { background: #25D366; color: #08172E; box-shadow: var(--shadow-wa); }
+.anat-cta--tele { background: #163C75; color: #fff;    box-shadow: var(--shadow-blue); }
+
+.anat-3d-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  min-height: 44px;
+  margin-top: 1rem;
+  padding: 0 1rem;
+  border-radius: .875rem;
+  border: 1px dashed #93C5FD;
+  color: #163C75;
+  font-weight: 700;
+}
+
+.anat-3d-link[hidden],
+.anat-backdrop[hidden],
+.anat-sheet-bar[hidden] { display: none; }
+
+.anat-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 69;
+  background: rgba(8,23,46,.45);
+}
+
+.anat-sheet-bar {
+  position: sticky;
+  top: -1.75rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  margin: -1.75rem -1.75rem .5rem;
+  padding: .5rem 1rem;
+  border-radius: 2rem 2rem 0 0;
+  background: #fff;
+}
+
+.anat-grabber {
+  width: 44px;
+  height: 5px;
+  border-radius: 9999px;
+  background: #CBD5E1;
+}
+
+.anat-sheet-close {
+  position: absolute;
+  top: .25rem;
+  right: .75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: #F1F5F9;
+  color: #08172E;
+  font-size: 1.25rem;
+}
+
+.anat-sheet-close:focus-visible { border-radius: 9999px; }
+
+@media (max-width: 1023px) {
+  .anat-panel.is-sheet-open {
+    position: fixed;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 70;
+    max-height: 82vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-radius: 2rem 2rem 0 0;
+    opacity: 1;
+    transform: none;
+    animation: anatSheetIn .35s var(--ease-out-expo);
+  }
+
+  html.anat-sheet-lock { overflow: hidden; }
+}
+
+@media (min-width: 1024px) {
+  .anat-panel {
+    position: sticky;
+    top: 110px;
+    padding: 2.5rem;
+  }
+}
+
+/* ── Visor 3D ── */
+.anat-viewer[hidden] { display: none; }
+
+.anat-stage {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 2rem;
+  background: radial-gradient(circle at 50% 40%, #FFFFFF 0%, #EAF2FB 70%);
+  border: 1px solid #E2E8F0;
+  box-shadow: var(--shadow-lg);
+}
+
+.anat-model-viewer {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.anat-model-viewer[hidden],
+.anat-stage-poster[hidden],
+.anat-progress[hidden],
+.anat-fallback[hidden] { display: none; }
+
+.anat-stage-poster {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.anat-stage-poster img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Skeleton brillante solo mientras carga */
+.anat-stage-poster:has(.anat-load-btn:disabled)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.65) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: shimmerSweep 1.6s linear infinite;
+}
+
+.anat-load-btn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  min-height: 56px;
+  padding: 0 1.75rem;
+  border-radius: 9999px;
+  background: #163C75;
+  color: #fff;
+  font-weight: 800;
+  box-shadow: var(--shadow-blue);
+  transition: transform .3s var(--ease-spring);
+}
+
+.anat-load-btn:hover    { transform: scale(1.04); }
+.anat-load-btn:disabled { opacity: .75; cursor: progress; }
+
+.anat-progress {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.25rem;
+  left: 1.5rem;
+  z-index: 2;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 9999px;
+  background: rgba(22,60,117,.15);
+}
+
+.anat-progress-bar {
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-accent);
+  transform: scaleX(var(--progress, 0));
+  transform-origin: left center;
+  transition: transform .2s linear;
+}
+
+.anat-fallback {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 2;
+  display: flex;
+  gap: .5rem;
+  padding: .875rem 1rem;
+  border-radius: 1rem;
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  color: #92400E;
+  font-weight: 600;
+}
+
+.anat-hotspot-info { min-height: 3rem; margin-top: 1.25rem; }
+
+.anat-mv-hotspot {
+  display: block;
+  min-width: 44px;
+  min-height: 44px;
+  padding: .3rem .75rem;
+  border-radius: 9999px;
+  background: #fff;
+  border: 2px solid #10B981;
+  color: #08172E;
+  font-size: .75rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-md);
+}
+
+.anat-mv-hotspot[aria-expanded="true"] { background: #10B981; }
+.anat-mv-hotspot:not([data-visible]) { opacity: .35; }
+
+/* ── Comparador hueso sano vs osteoporosis ── */
+.anat-compare {
+  --pos: 50%;
+  position: relative;
+  aspect-ratio: 320 / 220;
+  overflow: hidden;
+  border-radius: 2rem;
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  box-shadow: var(--shadow-lg);
+  cursor: ew-resize;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.anat-compare-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.anat-compare-layer svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.anat-compare-layer--osteo { clip-path: inset(0 0 0 var(--pos)); }
+
+.anat-compare-tag {
+  position: absolute;
+  top: .9rem;
+  padding: .3rem .75rem;
+  border-radius: 9999px;
+  background: rgba(255,255,255,.94);
+  color: #08172E;
+  font-size: .75rem;
+  font-weight: 800;
+  box-shadow: var(--shadow-sm);
+}
+
+.anat-compare-tag--left  { left: .9rem; }
+.anat-compare-tag--right { right: .9rem; }
+
+.anat-compare-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  margin-left: -22px;
+  cursor: ew-resize;
+}
+
+.anat-compare-handle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  margin-left: -1.5px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(22,60,117,.35);
+}
+
+.anat-compare-knob {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: #163C75;
+  border: 3px solid #fff;
+  color: #fff;
+  font-size: 1.25rem;
+  box-shadow: var(--shadow-blue);
+}
+
+.anat-compare-handle:focus-visible { outline: none; box-shadow: none; }
+.anat-compare-handle:focus-visible .anat-compare-knob {
+  outline: 2.5px solid #10B981;
+  outline-offset: 3px;
+}
+
+.anat-tscore { display: grid; gap: .5rem; }
+
+.anat-tscore li {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .6rem .9rem;
+  border-radius: .875rem;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  color: #374151;
+}
+
+.anat-tscore-dot {
+  flex-shrink: 0;
+  width: .75rem;
+  height: .75rem;
+  border-radius: 9999px;
+}
+
+.anat-tscore-dot--ok  { background: #10B981; }
+.anat-tscore-dot--mid { background: #F59E0B; }
+.anat-tscore-dot--low { background: #DC2626; }
+
+/* ── Etapas de la artrosis de rodilla ── */
+.anat-stages {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px)  { .anat-stages { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .anat-stages { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+.anat-stage-card {
+  padding: 1.5rem;
+  border-radius: 1.75rem;
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  box-shadow: var(--shadow-md);
+}
+
+.anat-stage-figure {
+  aspect-ratio: 160 / 180;
+  max-width: 220px;
+  margin: 0 auto 1rem;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: #F1F6FC;
+}
+
+.anat-knee {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.anat-bone {
+  fill: #EAF2FB;
+  stroke: #163C75;
+  stroke-opacity: .7;
+  stroke-width: 2;
+}
+
+/* Estado final de cada etapa por defecto (sin JS o con movimiento reducido) */
+.anat-knee-femur { transform: translateY(var(--shift)); }
+
+.anat-cart {
+  fill: #10B981;
+  fill-opacity: .85;
+  transform: scaleY(var(--cart));
+  transform-box: fill-box;
+}
+
+.anat-cart--femur { transform-origin: top; }
+.anat-cart--tibia { transform-origin: bottom; }
+
+.anat-osteo {
+  fill: #F59E0B;
+  transform: scale(var(--osteo));
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.anat-scler {
+  fill: #163C75;
+  opacity: calc(var(--scler) * .7);
+}
+
+.anat-stage-step {
+  margin-bottom: .25rem;
+  color: #047857;
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* Animación al hacer scroll: parte de la articulación sana y llega a su etapa */
+.anat-stages--animate .anat-knee-femur,
+.anat-stages--animate .anat-cart,
+.anat-stages--animate .anat-osteo {
+  transition: transform 1.3s var(--ease-out-expo);
+}
+
+.anat-stages--animate .anat-scler { transition: opacity 1.3s var(--ease-organic); }
+
+.anat-stages--animate .anat-stage-card:not(.is-visible) {
+  --cart: 1 !important;
+  --shift: 0px !important;
+  --osteo: 0 !important;
+  --scler: 0 !important;
+}
+
+/* ── Movimiento reducido ── */
+@media (prefers-reduced-motion: reduce) {
+  .anat-hotspot-dot::after,
+  .anat-zone-glow.is-active,
+  .anat-stage-poster::before,
+  .anat-panel.is-sheet-open { animation: none !important; }
+
+  .anat-hotspot-dot,
+  .anat-hotspot-label,
+  .anat-zone-glow,
+  .anat-cta,
+  .anat-load-btn,
+  .anat-progress-bar,
+  .anat-knee-femur,
+  .anat-cart,
+  .anat-osteo,
+  .anat-scler { transition: none !important; }
+
+  #anatomia .reveal,
+  #anatomia .reveal-left,
+  #anatomia .reveal-right {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+}

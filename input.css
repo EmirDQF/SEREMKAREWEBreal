@@ -1,0 +1,13 @@
+/* Entrada del build → dist/output.css (npm run build).
+   El orden replica la cascada que había con los CDN:
+   fuentes → style.css → Tailwind (base, components, utilities) → íconos Phosphor
+   (el CDN de Tailwind inyectaba su <style> después de style.css y el script de
+   Phosphor agregaba su CSS al final del <head>). */
+@import "./assets/fonts/fonts.css";
+@import "./style.css";
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "./assets/fonts/phosphor/phosphor.css";

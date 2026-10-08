@@ -1,0 +1,17 @@
+{
+  "name": "SERMEKARE | Servicios Médicos Kare",
+  "short_name": "SERMEKARE",
+  "description": "Reumatólogo en Lima y teleconsulta reumatológica en todo el Perú.",
+  "lang": "es-PE",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#F8FAFC",
+  "theme_color": "#163C75",
+  "icons": [
+    { "src": "assets/icons/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "sermekare-next",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "C:/Users/Usuario/Desktop/SEREMKAREWEB", "run", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "sermekare-prod",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "C:/Users/Usuario/Desktop/SEREMKAREWEB", "run", "start", "--", "-p", "3005"],
+      "port": 3005
+    }
+  ]
+}
